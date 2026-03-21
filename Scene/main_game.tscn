@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bdru4qbfviek3"]
+
+[ext_resource type="PackedScene" uid="uid://bgjf2ruwmtgd3" path="res://Scene/Yu_animation/yu.tscn" id="1_jv8gs"]
+
+[node name="Main_game" type="Node2D" unique_id=336509061]
+
+[node name="YU" parent="." unique_id=883593260 instance=ExtResource("1_jv8gs")]
+position = Vector2(-78, 0)

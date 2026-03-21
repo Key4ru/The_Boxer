@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dkbbbh3ggp7ch"]
+
+[ext_resource type="Script" uid="uid://cqd2eo2xmip2i" path="res://Script/main_menu.gd" id="1_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://bvptwjvdgofa1" path="res://BG/MainMenu.png" id="2_jix8l"]
+[ext_resource type="Texture2D" uid="uid://c5wq5enkrelya" path="res://buttons/startnormal.png" id="3_kqsxi"]
+[ext_resource type="Texture2D" uid="uid://dd6m24kypqanu" path="res://buttons/hoverstart.png" id="4_kqsxi"]
+[ext_resource type="Texture2D" uid="uid://bwxyerqcapdih" path="res://buttons/tutorialnormal.png" id="5_hptlk"]
+[ext_resource type="Texture2D" uid="uid://ceg3s1d87fyit" path="res://buttons/hovertutorial.png" id="6_oqads"]
+[ext_resource type="Texture2D" uid="uid://00swr35itwh5" path="res://buttons/tutorialquit.png" id="7_s2f1d"]
+[ext_resource type="Texture2D" uid="uid://1uv0l36vlpjn" path="res://buttons/hoverquitl.png" id="8_ejkra"]
+
+[node name="MainMenu" type="Node2D" unique_id=531519034]
+script = ExtResource("1_fu7sn")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=944105038]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground" unique_id=569906467]
+
+[node name="MainMenu" type="Sprite2D" parent="ParallaxBackground" unique_id=1867668829]
+position = Vector2(577, 324.5)
+scale = Vector2(2.8900003, 2.3932586)
+texture = ExtResource("2_jix8l")
+
+[node name="Control" type="Control" parent="." unique_id=240052]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="TextureButton" parent="Control" unique_id=243951755]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 79.0
+offset_right = 395.0
+offset_bottom = 237.0
+texture_normal = ExtResource("3_kqsxi")
+texture_hover = ExtResource("4_kqsxi")
+
+[node name="Tutorial" type="TextureButton" parent="Control" unique_id=291838774]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 241.0
+offset_right = 394.0
+offset_bottom = 399.0
+texture_normal = ExtResource("5_hptlk")
+texture_hover = ExtResource("6_oqads")
+
+[node name="Quit" type="TextureButton" parent="Control" unique_id=320699886]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 416.0
+offset_right = 391.0
+offset_bottom = 574.0
+texture_normal = ExtResource("7_s2f1d")
+texture_hover = ExtResource("8_ejkra")
+
+[connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Control/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Control/Quit" to="." method="_on_quit_pressed"]

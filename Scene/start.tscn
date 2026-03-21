@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://rrsl8n55dh5n"]
+
+[ext_resource type="Script" uid="uid://bm6u0mtojce7h" path="res://Script/start.gd" id="1_ots34"]
+[ext_resource type="Texture2D" uid="uid://5nhynh0x4301" path="res://assets/Invisbleplatform-1-export.png" id="2_44wi4"]
+[ext_resource type="Texture2D" uid="uid://ikkd6cs2nr0j" path="res://buttons/backnormal.png" id="2_c1jx1"]
+[ext_resource type="Texture2D" uid="uid://bagk16irw3lif" path="res://buttons/hoverback.png" id="3_4j8re"]
+[ext_resource type="Texture2D" uid="uid://c41hqn0usxhbo" path="res://BG/NewSprite.png" id="3_v5eq2"]
+[ext_resource type="PackedScene" uid="uid://bgjf2ruwmtgd3" path="res://Scene/Yu_animation/yu.tscn" id="6_v5eq2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42ll5"]
+size = Vector2(1942.1042, 1125.0571)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jai7n"]
+size = Vector2(1918.4229, 1125.0571)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwbhd"]
+size = Vector2(1923.75, 1183.1582)
+
+[node name="Start" type="Node2D" unique_id=833940772]
+script = ExtResource("1_ots34")
+
+[node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("6_v5eq2")]
+position = Vector2(840, 608)
+
+[node name="Platform" type="StaticBody2D" parent="." unique_id=1708790201]
+
+[node name="invinsible3" type="Sprite2D" parent="Platform" unique_id=362504089]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(71, 502.88443)
+scale = Vector2(0.042222243, 0.21865556)
+texture = ExtResource("2_44wi4")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Platform" unique_id=439616762]
+position = Vector2(70.99999, 503)
+scale = Vector2(0.042222243, 0.21865556)
+shape = SubResource("RectangleShape2D_42ll5")
+
+[node name="invinsible2" type="Sprite2D" parent="Platform" unique_id=36046848]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(1047, 509.00003)
+scale = Vector2(0.042222243, 0.21865556)
+texture = ExtResource("2_44wi4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Platform" unique_id=355346388]
+position = Vector2(1046.5, 509)
+scale = Vector2(0.042222243, 0.21865556)
+shape = SubResource("RectangleShape2D_jai7n")
+
+[node name="invinsible" type="Sprite2D" parent="Platform" unique_id=222247686]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(550.0001, 604.00006)
+scale = Vector2(0.53333336, 0.050711714)
+texture = ExtResource("2_44wi4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=1208002493]
+position = Vector2(550, 604)
+scale = Vector2(0.53333336, 0.050711714)
+shape = SubResource("RectangleShape2D_gwbhd")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1654085584]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground" unique_id=395913439]
+visible = false
+position = Vector2(582, 326)
+scale = Vector2(1.1357422, 1.1239316)
+texture = ExtResource("3_v5eq2")
+
+[node name="Control" type="Control" parent="." unique_id=1831150696]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back" type="TextureButton" parent="Control" unique_id=1958518935]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 21.0
+offset_right = 214.0
+offset_bottom = 103.0
+texture_normal = ExtResource("2_c1jx1")
+texture_hover = ExtResource("3_4j8re")
+
+[connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]
