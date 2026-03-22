@@ -9,13 +9,13 @@
 atlas = ExtResource("3_tb52u")
 region = Rect2(0, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_etohv"]
-atlas = ExtResource("3_tb52u")
-region = Rect2(32, 0, 32, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6weej"]
 atlas = ExtResource("3_tb52u")
 region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etohv"]
+atlas = ExtResource("3_tb52u")
+region = Rect2(32, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0f23l"]
 atlas = ExtResource("3_tb52u")
@@ -68,10 +68,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_wpecb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_etohv")
+"texture": SubResource("AtlasTexture_6weej")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6weej")
+"texture": SubResource("AtlasTexture_etohv")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0f23l")
@@ -89,7 +89,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"punching",
-"speed": 2.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -128,7 +128,7 @@ size = Vector2(13, 45)
 script = ExtResource("1_2jvr2")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1741049357]
-position = Vector2(78.5, -148.99998)
+position = Vector2(89, -144)
 scale = Vector2(5.78125, 4.9062495)
 sprite_frames = SubResource("SpriteFrames_j8wvr")
 animation = &"punching"

@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# 2. Handle Attack Input (using Space/UI Select as example)
-	if Input.is_action_just_pressed("ui_select") and not isAttacking:
+	if Input.is_action_just_pressed("Attack") and not isAttacking:
 		punch()
 
 	# 3. Handle Jump Input
