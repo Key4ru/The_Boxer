@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://rrsl8n55dh5n"]
 
 [ext_resource type="Script" uid="uid://bm6u0mtojce7h" path="res://Script/start.gd" id="1_ots34"]
-[ext_resource type="Texture2D" uid="uid://ikkd6cs2nr0j" path="res://buttons/backnormal.png" id="2_c1jx1"]
-[ext_resource type="Texture2D" uid="uid://bagk16irw3lif" path="res://buttons/hoverback.png" id="3_4j8re"]
+[ext_resource type="Texture2D" uid="uid://cbfq3sc5d5gg1" path="res://buttons/Back.png" id="3_44wi4"]
 [ext_resource type="Texture2D" uid="uid://c41hqn0usxhbo" path="res://BG/NewSprite.png" id="3_v5eq2"]
+[ext_resource type="Texture2D" uid="uid://4qsjvt8gw55n" path="res://buttons/Back_Hover.png" id="4_4j8re"]
 
 [node name="Start" type="Node2D" unique_id=833940772]
 script = ExtResource("1_ots34")
@@ -23,11 +23,12 @@ offset_bottom = 40.0
 
 [node name="Back" type="TextureButton" parent="Control" unique_id=1958518935]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 21.0
-offset_right = 214.0
-offset_bottom = 103.0
-texture_normal = ExtResource("2_c1jx1")
-texture_hover = ExtResource("3_4j8re")
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 179.0
+offset_bottom = 64.0
+texture_normal = ExtResource("3_44wi4")
+texture_hover = ExtResource("4_4j8re")
+stretch_mode = 0
 
 [connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]

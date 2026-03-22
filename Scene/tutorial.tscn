@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://crj4usfpktdm6"]
 
 [ext_resource type="Script" uid="uid://bej3c6mghsjxn" path="res://Script/tutorial.gd" id="1_7n6eb"]
-[ext_resource type="Texture2D" uid="uid://ikkd6cs2nr0j" path="res://buttons/backnormal.png" id="2_abeby"]
 [ext_resource type="Texture2D" uid="uid://du0k4sq1o3w7u" path="res://BG/gym - Copy.png" id="2_qwkqa"]
-[ext_resource type="Texture2D" uid="uid://bagk16irw3lif" path="res://buttons/hoverback.png" id="3_tugj2"]
+[ext_resource type="Texture2D" uid="uid://cbfq3sc5d5gg1" path="res://buttons/Back.png" id="3_qwkqa"]
+[ext_resource type="Texture2D" uid="uid://4qsjvt8gw55n" path="res://buttons/Back_Hover.png" id="4_aqehm"]
 [ext_resource type="Texture2D" uid="uid://5nhynh0x4301" path="res://assets/Invisbleplatform-1-export.png" id="5_qwkqa"]
 [ext_resource type="PackedScene" uid="uid://bgjf2ruwmtgd3" path="res://Scene/Yu_animation/yu.tscn" id="6_aqehm"]
-[ext_resource type="Texture2D" uid="uid://bhvxjvk4tsgb" path="res://assets/Text/Sprite-0004.png" id="7_qwkqa"]
+[ext_resource type="AudioStream" uid="uid://d0ht8xa5gfeoo" path="res://assets/Sound/joyinsound-corporate-upbeat-motivational-music-royalty-free-496474.mp3" id="8_aqehm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cpsy"]
 size = Vector2(1149, 80)
@@ -19,6 +19,12 @@ size = Vector2(1885.5093, 1112.4805)
 
 [node name="Tutorial" type="Node2D" unique_id=764362344]
 script = ExtResource("1_7n6eb")
+
+[node name="BG_Music" type="AudioStreamPlayer2D" parent="." unique_id=1793867648]
+stream = ExtResource("8_aqehm")
+volume_db = -33.95
+autoplay = true
+bus = &"Music"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1740983104]
 
@@ -35,15 +41,16 @@ offset_bottom = 40.0
 
 [node name="Back" type="TextureButton" parent="Control" unique_id=83900792]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 18.0
-offset_right = 194.0
-offset_bottom = 97.0
-texture_normal = ExtResource("2_abeby")
-texture_hover = ExtResource("3_tugj2")
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 202.25
+offset_bottom = 70.0
+texture_normal = ExtResource("3_qwkqa")
+texture_hover = ExtResource("4_aqehm")
+stretch_mode = 0
 
 [node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("6_aqehm")]
-position = Vector2(39, 605)
+position = Vector2(48, 632)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1237247230]
 
@@ -78,10 +85,5 @@ self_modulate = Color(1, 1, 1, 0)
 position = Vector2(-11, 475)
 scale = Vector2(0.06523437, 0.30382562)
 texture = ExtResource("5_qwkqa")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1516781189]
-position = Vector2(223, 185)
-scale = Vector2(2.7669492, 3.3833337)
-texture = ExtResource("7_qwkqa")
 
 [connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]

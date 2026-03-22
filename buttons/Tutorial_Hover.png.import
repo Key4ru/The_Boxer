@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1uv0l36vlpjn"
-path="res://.godot/imported/hoverquitl.png-cb788e294a44a7051f4040fefe58ebb3.ctex"
+uid="uid://dje3ky1t7l6ep"
+path="res://.godot/imported/Tutorial_Hover.png-99284fc9e6970145802dd6c22213db58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://buttons/hoverquitl.png"
-dest_files=["res://.godot/imported/hoverquitl.png-cb788e294a44a7051f4040fefe58ebb3.ctex"]
+source_file="res://buttons/Tutorial_Hover.png"
+dest_files=["res://.godot/imported/Tutorial_Hover.png-99284fc9e6970145802dd6c22213db58.ctex"]
 
 [params]
 

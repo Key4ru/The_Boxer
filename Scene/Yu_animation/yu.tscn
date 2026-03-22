@@ -250,7 +250,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"backward_walk",
-"speed": 15.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -291,7 +291,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"forward_walk",
-"speed": 10.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -325,7 +325,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"punch",
-"speed": 13.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -408,11 +408,10 @@ z_as_relative = false
 position = Vector2(89, -144)
 scale = Vector2(5.78125, 4.9062495)
 sprite_frames = SubResource("SpriteFrames_j8wvr")
-animation = &"backward_walk"
+animation = &"punch"
 autoplay = "stance_idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=161622378]
-visible = false
 position = Vector2(0.5, -22.5)
 shape = SubResource("RectangleShape2D_rkw6c")
 
