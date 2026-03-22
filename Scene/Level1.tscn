@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bdru4qbfviek3"]
+
+[ext_resource type="Texture2D" uid="uid://c41hqn0usxhbo" path="res://BG/NewSprite.png" id="1_htkpn"]
+[ext_resource type="PackedScene" uid="uid://bgjf2ruwmtgd3" path="res://Scene/Yu_animation/yu.tscn" id="1_jv8gs"]
+[ext_resource type="Texture2D" uid="uid://5nhynh0x4301" path="res://assets/Invisbleplatform-1-export.png" id="2_1btii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44mwd"]
+size = Vector2(1245, 64)
+
+[node name="Level1" type="Node2D" unique_id=399560159]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=296975955]
+position = Vector2(578, 321.75)
+scale = Vector2(1.1230469, 1.0965812)
+texture = ExtResource("1_htkpn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=636683551]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=285092063]
+position = Vector2(533.5, 625)
+shape = SubResource("RectangleShape2D_44mwd")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1735039303]
+position = Vector2(618.5, 624)
+scale = Vector2(0.6401042, 0.05916375)
+texture = ExtResource("2_1btii")
+
+[node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("1_jv8gs")]
+position = Vector2(24, 561)

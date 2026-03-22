@@ -8,57 +8,58 @@ var isAttacking = false
 
 # Node References
 @onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
+@onready var sfx_punch: AudioStreamPlayer = $sfx_punch
 
 func _ready() -> void:
-	# Connect the signal so we know when the animation finishes
 	animated_sprite_2d_2.animation_finished.connect(_on_animation_finished)
 
 func _physics_process(delta: float) -> void:
-	# 1. Apply Gravity
+	# Apply Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# 2. Handle Attack Input (using Space/UI Select as example)
+	# Attack
 	if Input.is_action_just_pressed("Attack") and not isAttacking:
 		punch()
 
-	# 3. Handle Jump Input
+	# Jump
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not isAttacking:
 		velocity.y = JUMP_VELOCITY
 
-	# 4. Get Input Direction
+	# Movement
 	var direction := Input.get_axis("ui_left", "ui_right")
-	
-	# 5. Handle Movement (We disable movement while punching for a "heavy" feel, 
-	# or keep it if you want "run-and-punch")
-	if direction and not isAttacking:
+
+	if direction != 0 and not isAttacking:
 		velocity.x = direction * SPEED
 		animated_sprite_2d_2.flip_h = (direction < 0)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# 6. Handle Animations
+	# Animations
 	update_animations(direction)
 
 	move_and_slide()
 
+# ✅ Keep ONLY this one
 func punch() -> void:
 	isAttacking = true
-	animated_sprite_2d_2.play("punching")
+	animated_sprite_2d_2.play("punch") # make sure this exists
+	sfx_punch.play()
 
 func update_animations(direction: float) -> void:
-	# If we are attacking, don't let the other logic play idle/walk
 	if isAttacking:
 		return 
 
 	if not is_on_floor():
-		animated_sprite_2d_2.play("idle") # Usually a 'jump' anim here
-	elif direction != 0:
-		animated_sprite_2d_2.play("walking")
+		animated_sprite_2d_2.play("stance_idle") # or "jump"
+	elif direction > 0:
+		animated_sprite_2d_2.play("forward_walk")
+	elif direction < 0:
+		animated_sprite_2d_2.play("backward_walk")
+		animated_sprite_2d_2.flip_h = false
 	else:
-		animated_sprite_2d_2.play("idle")
+		animated_sprite_2d_2.play("stance_idle")
 
-# This function runs automatically when ANY animation ends
 func _on_animation_finished() -> void:
-	if animated_sprite_2d_2.animation == "punching":
+	if animated_sprite_2d_2.animation == "punch":
 		isAttacking = false

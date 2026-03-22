@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://crj4usfpktdm6"]
 
 [ext_resource type="Script" uid="uid://bej3c6mghsjxn" path="res://Script/tutorial.gd" id="1_7n6eb"]
-[ext_resource type="Texture2D" uid="uid://c41hqn0usxhbo" path="res://BG/NewSprite.png" id="2_4cpsy"]
 [ext_resource type="Texture2D" uid="uid://ikkd6cs2nr0j" path="res://buttons/backnormal.png" id="2_abeby"]
+[ext_resource type="Texture2D" uid="uid://du0k4sq1o3w7u" path="res://BG/gym - Copy.png" id="2_qwkqa"]
 [ext_resource type="Texture2D" uid="uid://bagk16irw3lif" path="res://buttons/hoverback.png" id="3_tugj2"]
 [ext_resource type="Texture2D" uid="uid://5nhynh0x4301" path="res://assets/Invisbleplatform-1-export.png" id="5_qwkqa"]
 [ext_resource type="PackedScene" uid="uid://bgjf2ruwmtgd3" path="res://Scene/Yu_animation/yu.tscn" id="6_aqehm"]
@@ -25,7 +25,7 @@ script = ExtResource("1_7n6eb")
 [node name="NewSprite" type="Sprite2D" parent="ParallaxBackground" unique_id=1146761679]
 position = Vector2(580, 324.25)
 scale = Vector2(1.1230469, 1.0965812)
-texture = ExtResource("2_4cpsy")
+texture = ExtResource("2_qwkqa")
 
 [node name="Control" type="Control" parent="." unique_id=991363205]
 layout_mode = 3
@@ -43,7 +43,7 @@ texture_normal = ExtResource("2_abeby")
 texture_hover = ExtResource("3_tugj2")
 
 [node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("6_aqehm")]
-position = Vector2(878, 584)
+position = Vector2(39, 605)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1237247230]
 
@@ -80,7 +80,7 @@ scale = Vector2(0.06523437, 0.30382562)
 texture = ExtResource("5_qwkqa")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1516781189]
-position = Vector2(371.00003, 84)
+position = Vector2(223, 185)
 scale = Vector2(2.7669492, 3.3833337)
 texture = ExtResource("7_qwkqa")
 

@@ -54,6 +54,7 @@ offset_bottom = 574.0
 texture_normal = ExtResource("7_s2f1d")
 texture_hover = ExtResource("8_ejkra")
 
+[connection signal="mouse_entered" from="Control/Start" to="." method="_on_start_mouse_entered"]
 [connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Control/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="Control/Quit" to="." method="_on_quit_pressed"]
