@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://crj4usfpktdm6"]
 
 [ext_resource type="Script" uid="uid://bej3c6mghsjxn" path="res://Script/tutorial.gd" id="1_7n6eb"]
+[ext_resource type="AudioStream" uid="uid://cxcs6a0bynyay" path="res://assets/Sound/Syn Cole - Feel Good  Future House  NCS - Copyright Free Music.mp3" id="2_aqehm"]
 [ext_resource type="Texture2D" uid="uid://du0k4sq1o3w7u" path="res://BG/gym - Copy.png" id="2_qwkqa"]
 [ext_resource type="Texture2D" uid="uid://cbfq3sc5d5gg1" path="res://buttons/Back.png" id="3_qwkqa"]
 [ext_resource type="Texture2D" uid="uid://4qsjvt8gw55n" path="res://buttons/Back_Hover.png" id="4_aqehm"]
 [ext_resource type="Texture2D" uid="uid://5nhynh0x4301" path="res://assets/Invisbleplatform-1-export.png" id="5_qwkqa"]
 [ext_resource type="PackedScene" uid="uid://bgjf2ruwmtgd3" path="res://Scene/Yu_animation/yu.tscn" id="6_aqehm"]
-[ext_resource type="AudioStream" uid="uid://d0ht8xa5gfeoo" path="res://assets/Sound/joyinsound-corporate-upbeat-motivational-music-royalty-free-496474.mp3" id="8_aqehm"]
+[ext_resource type="PackedScene" uid="uid://2ikl1ps647gk" path="res://Scene/Takeda/takeda.tscn" id="8_aqehm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cpsy"]
 size = Vector2(1149, 80)
@@ -21,10 +22,9 @@ size = Vector2(1885.5093, 1112.4805)
 script = ExtResource("1_7n6eb")
 
 [node name="BG_Music" type="AudioStreamPlayer2D" parent="." unique_id=1793867648]
-stream = ExtResource("8_aqehm")
-volume_db = -33.95
+stream = ExtResource("2_aqehm")
+volume_db = -20.265
 autoplay = true
-bus = &"Music"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1740983104]
 
@@ -50,7 +50,7 @@ texture_hover = ExtResource("4_aqehm")
 stretch_mode = 0
 
 [node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("6_aqehm")]
-position = Vector2(48, 632)
+position = Vector2(448, 592)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1237247230]
 
@@ -85,5 +85,8 @@ self_modulate = Color(1, 1, 1, 0)
 position = Vector2(-11, 475)
 scale = Vector2(0.06523437, 0.30382562)
 texture = ExtResource("5_qwkqa")
+
+[node name="takeda" parent="." unique_id=1477152555 instance=ExtResource("8_aqehm")]
+position = Vector2(320, 264)
 
 [connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]

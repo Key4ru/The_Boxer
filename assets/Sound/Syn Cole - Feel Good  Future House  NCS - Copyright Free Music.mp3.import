@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxcs6a0bynyay"
+path="res://.godot/imported/Syn Cole - Feel Good  Future House  NCS - Copyright Free Music.mp3-4f8dd9b6fbc4a6aa4e51ca0ea914e6e2.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/Syn Cole - Feel Good  Future House  NCS - Copyright Free Music.mp3"
+dest_files=["res://.godot/imported/Syn Cole - Feel Good  Future House  NCS - Copyright Free Music.mp3-4f8dd9b6fbc4a6aa4e51ca0ea914e6e2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

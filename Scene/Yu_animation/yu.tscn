@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dp8rawq8mf5sh" path="res://assets/YU/yu_stance_idle-Sheet.png" id="2_ifktp"]
 [ext_resource type="Texture2D" uid="uid://blcgmr572md27" path="res://assets/YU/yu_stance_forward_walk-Sheet2.png" id="3_q01xs"]
 [ext_resource type="Texture2D" uid="uid://c1uemi5kad8vr" path="res://assets/YU/yu_boxing_punch2-Sheet.png" id="4_q01xs"]
-[ext_resource type="AudioStream" uid="uid://w1tllqmu6mrk" path="res://assets/Sound/dry-fart.mp3" id="6_5v37g"]
+[ext_resource type="AudioStream" uid="uid://wqck4ihvkgyk" path="res://assets/Sound/fuuuuh.mp3" id="6_5v37g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j301k"]
 atlas = ExtResource("2_2jvr2")
@@ -325,7 +325,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"punch",
-"speed": 20.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -398,23 +398,25 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkw6c"]
-size = Vector2(13, 45)
+size = Vector2(128, 256)
 
 [node name="Yu idle" type="CharacterBody2D" unique_id=883593260]
 script = ExtResource("1_2jvr2")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1741049357]
 z_as_relative = false
-position = Vector2(89, -144)
-scale = Vector2(5.78125, 4.9062495)
+position = Vector2(-320, -168)
+scale = Vector2(7.4375, 7.4375)
 sprite_frames = SubResource("SpriteFrames_j8wvr")
 animation = &"punch"
 autoplay = "stance_idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=161622378]
-position = Vector2(0.5, -22.5)
+position = Vector2(-320, -128)
 shape = SubResource("RectangleShape2D_rkw6c")
 
 [node name="sfx_punch" type="AudioStreamPlayer" parent="." unique_id=2124749313]
 stream = ExtResource("6_5v37g")
-volume_db = -32.661
+volume_db = -41.752

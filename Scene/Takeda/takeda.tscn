@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://2ikl1ps647gk"]
+
+[ext_resource type="Texture2D" uid="uid://cl4wooe8pdl7y" path="res://assets/Takeda/Takeda_stance_punch-Sheet.png" id="2_yegnr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr2kq"]
+atlas = ExtResource("2_yegnr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yegnr"]
+atlas = ExtResource("2_yegnr")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55iqf"]
+atlas = ExtResource("2_yegnr")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6mir"]
+atlas = ExtResource("2_yegnr")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qewtd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pr2kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yegnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55iqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6mir")
+}],
+"loop": true,
+"name": &"punch",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yegnr"]
+size = Vector2(13.666672, 35.333336)
+
+[node name="takeda" type="Node2D" unique_id=1477152555]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=193854571]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D2" unique_id=412337330]
+position = Vector2(400, 128)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_qewtd")
+animation = &"punch"
+autoplay = "stance_punch"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1544475534]
+position = Vector2(392, 152.00002)
+scale = Vector2(7.438, 7.438)
+shape = SubResource("RectangleShape2D_yegnr")

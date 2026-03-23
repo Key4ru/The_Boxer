@@ -1,18 +1,24 @@
 [gd_scene format=3 uid="uid://bdru4qbfviek3"]
 
-[ext_resource type="Texture2D" uid="uid://c41hqn0usxhbo" path="res://BG/NewSprite.png" id="1_htkpn"]
-[ext_resource type="PackedScene" uid="uid://bgjf2ruwmtgd3" path="res://Scene/Yu_animation/yu.tscn" id="1_jv8gs"]
-[ext_resource type="Texture2D" uid="uid://5nhynh0x4301" path="res://assets/Invisbleplatform-1-export.png" id="2_1btii"]
+[ext_resource type="Texture2D" uid="uid://c41hqn0usxhbo" path="res://BG/NewSprite.png" id="1_o3lq6"]
+[ext_resource type="Texture2D" uid="uid://5nhynh0x4301" path="res://assets/Invisbleplatform-1-export.png" id="2_10jwb"]
+[ext_resource type="PackedScene" uid="uid://bgjf2ruwmtgd3" path="res://Scene/Yu_animation/yu.tscn" id="3_gqi4c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44mwd"]
 size = Vector2(1245, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruose"]
+size = Vector2(82, 312)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3lq6"]
+size = Vector2(97, 305)
 
 [node name="Level1" type="Node2D" unique_id=399560159]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=296975955]
 position = Vector2(578, 321.75)
 scale = Vector2(1.1230469, 1.0965812)
-texture = ExtResource("1_htkpn")
+texture = ExtResource("1_o3lq6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=636683551]
 
@@ -21,9 +27,34 @@ position = Vector2(533.5, 625)
 shape = SubResource("RectangleShape2D_44mwd")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1735039303]
+self_modulate = Color(1, 1, 1, 0)
 position = Vector2(618.5, 624)
 scale = Vector2(0.6401042, 0.05916375)
-texture = ExtResource("2_1btii")
+texture = ExtResource("2_10jwb")
 
-[node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("1_jv8gs")]
-position = Vector2(24, 561)
+[node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("3_gqi4c")]
+position = Vector2(481, 584)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=770576941]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=506112428]
+position = Vector2(31, 428)
+shape = SubResource("RectangleShape2D_ruose")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=129480651]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(31.999922, 427.5)
+scale = Vector2(0.041666742, 0.27846974)
+texture = ExtResource("2_10jwb")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1749146720]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=525302201]
+position = Vector2(1103.5, 504)
+shape = SubResource("RectangleShape2D_o3lq6")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3" unique_id=1027235246]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(1108, 500)
+scale = Vector2(0.054166656, 0.27758002)
+texture = ExtResource("2_10jwb")
