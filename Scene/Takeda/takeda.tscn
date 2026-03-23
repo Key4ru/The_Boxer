@@ -33,27 +33,52 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a6mir")
 }],
-"loop": true,
+"loop": false,
 "name": &"punch",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yegnr"]
-size = Vector2(13.666672, 35.333336)
+size = Vector2(13.666672, 23.662273)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr2kq"]
+size = Vector2(99.25, 58.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55iqf"]
+size = Vector2(39.625, 37.625)
 
 [node name="takeda" type="Node2D" unique_id=1477152555]
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=193854571]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D2" unique_id=412337330]
-position = Vector2(400, 128)
-scale = Vector2(6, 6)
+position = Vector2(480, 118.5)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qewtd")
 animation = &"punch"
 autoplay = "stance_punch"
+frame = 3
+frame_progress = 1.0
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1544475534]
-position = Vector2(392, 152.00002)
+position = Vector2(472, 128)
 scale = Vector2(7.438, 7.438)
 shape = SubResource("RectangleShape2D_yegnr")
+
+[node name="PlayerDetector" type="Area2D" parent="." unique_id=1671029814]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1100743897]
+position = Vector2(384, 128)
+shape = SubResource("RectangleShape2D_pr2kq")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2012519959]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=12787384]
+position = Vector2(416, 128)
+shape = SubResource("RectangleShape2D_55iqf")
+debug_color = Color(0.95686275, 0, 0, 0.41960785)

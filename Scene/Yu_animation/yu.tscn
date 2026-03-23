@@ -7,10 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c1uemi5kad8vr" path="res://assets/YU/yu_boxing_punch2-Sheet.png" id="4_q01xs"]
 [ext_resource type="AudioStream" uid="uid://wqck4ihvkgyk" path="res://assets/Sound/fuuuuh.mp3" id="6_5v37g"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j301k"]
-atlas = ExtResource("2_2jvr2")
-region = Rect2(0, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rl547"]
 atlas = ExtResource("2_2jvr2")
 region = Rect2(64, 0, 64, 64)
@@ -51,8 +47,8 @@ region = Rect2(576, 0, 64, 64)
 atlas = ExtResource("2_2jvr2")
 region = Rect2(640, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lk86n"]
-atlas = ExtResource("3_q01xs")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j301k"]
+atlas = ExtResource("2_2jvr2")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40ne1"]
@@ -98,6 +94,10 @@ region = Rect2(640, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2npr"]
 atlas = ExtResource("3_q01xs")
 region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk86n"]
+atlas = ExtResource("3_q01xs")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vgbp0"]
 load_path = "res://.godot/imported/yu_idle_side-Sheet.png-94b309a94dbd02a1cc74b3e1b8feb4bf.ctex"
@@ -216,9 +216,6 @@ region = Rect2(224, 0, 32, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j301k")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_rl547")
 }, {
 "duration": 1.0,
@@ -247,15 +244,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yx5he")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j301k")
 }],
 "loop": false,
 "name": &"backward_walk",
-"speed": 10.0
+"speed": 5.5
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lk86n")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_40ne1")
 }, {
@@ -288,10 +285,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m2npr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk86n")
 }],
 "loop": false,
 "name": &"forward_walk",
-"speed": 11.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -325,7 +325,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"punch",
-"speed": 12.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -365,7 +365,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"stance_idle",
-"speed": 7.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -398,25 +398,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkw6c"]
-size = Vector2(128, 256)
+size = Vector2(128, 192)
 
 [node name="Yu idle" type="CharacterBody2D" unique_id=883593260]
 script = ExtResource("1_2jvr2")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1741049357]
 z_as_relative = false
-position = Vector2(-320, -168)
-scale = Vector2(7.4375, 7.4375)
+position = Vector2(-296, -112)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_j8wvr")
-animation = &"punch"
+animation = &"forward_walk"
 autoplay = "stance_idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=161622378]
-position = Vector2(-320, -128)
+position = Vector2(-296, -104)
 shape = SubResource("RectangleShape2D_rkw6c")
 
 [node name="sfx_punch" type="AudioStreamPlayer" parent="." unique_id=2124749313]
 stream = ExtResource("6_5v37g")
-volume_db = -41.752
+volume_db = -30.895
