@@ -1,3 +1,4 @@
+class_name takada
 extends CharacterBody2D
 
 const SPEED = 175.0
@@ -5,14 +6,13 @@ const SPEED = 175.0
 enum State { IDLE, BACKWARD_WALK, FORWARD_WALK, PUNCH }
 var current_state = State.IDLE
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D2
-@onready var sfx_punch: AudioStreamPlayer = $sfx_punch
-@onready var damage_emmiter: = $Damage_emmiter
+# ✅ Check your scene tree: Is it named 'AnimatedSprite2D' or 'AnimatedSprite2D2'?
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
 
 func _ready() -> void:
-	# ✅ Combine both connections into ONE ready function
+	# 🔗 CRITICAL: This connects the signal so the punch actually ends
 	sprite.animation_finished.connect(_on_animation_finished)
-	
+
 func _physics_process(delta: float) -> void:
 	# 1. Apply Gravity
 	if not is_on_floor():
@@ -29,10 +29,10 @@ func _physics_process(delta: float) -> void:
 	elif current_state != State.PUNCH:
 		if direction > 0:
 			current_state = State.FORWARD_WALK
-			sprite.flip_h = false # Face Right
+			sprite.flip_h = true 
 		elif direction < 0:
 			current_state = State.BACKWARD_WALK
-			sprite.flip_h = false  # Face Left
+			sprite.flip_h = true # ✅ FIXED: Now faces Left
 		else:
 			current_state = State.IDLE
 
@@ -40,26 +40,37 @@ func _physics_process(delta: float) -> void:
 	if current_state != State.PUNCH:
 		velocity.x = direction * SPEED
 	else:
+		# Slide to a stop during punch
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	update_animations()
 	move_and_slide()
 
-# ✅ Only one can_attack function needed
 func can_attack() -> bool:
 	return current_state != State.PUNCH
 
 func enter_punch_state() -> void:
 	current_state = State.PUNCH
 	sprite.play("punch")
-	sfx_punch.play()
 
 func update_animations() -> void:
-	pass
+	# 🛑 Prevent walking animations from overriding the punch
+	if current_state == State.PUNCH:
+		return
+
+	match current_state:
+		State.IDLE:
+			sprite.play("idle") 
+		State.FORWARD_WALK:
+			sprite.play("forward_walk")
+		State.BACKWARD_WALK:
+			sprite.play("backward_walk")
 
 func _on_animation_finished() -> void:
+	# Reset state once the punch animation completes
 	if sprite.animation == "punch":
 		current_state = State.IDLE
 
-func on_enit_damage(damage_receiver: Area2D) -> void:
-	print(damage_receiver)
+# Fixed typo from "enit" to "emit"
+func on_emit_damage(damage_receiver: Area2D) -> void:
+	print("Hit: ", damage_receiver.name)

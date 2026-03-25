@@ -1,13 +1,12 @@
-[gd_scene format=3 uid="uid://bbswsyrvei0q5"]
+[gd_scene format=3 uid="uid://bgjf2ruwmtgd3"]
 
-[ext_resource type="Script" uid="uid://b3gke7hqvdldc" path="res://Scene/Yu_animation/yu.gd" id="1_7cq13"]
+[ext_resource type="Script" uid="uid://bbp5hrtyxt6wu" path="res://Script/Yu/yu.gd" id="1_2jvr2"]
 [ext_resource type="Texture2D" uid="uid://dgdyfvkdf1c64" path="res://assets/YU/yu_stance_backward_walk-Sheet.png" id="2_2jvr2"]
 [ext_resource type="Texture2D" uid="uid://dp8rawq8mf5sh" path="res://assets/YU/yu_stance_idle-Sheet.png" id="2_ifktp"]
 [ext_resource type="Texture2D" uid="uid://blcgmr572md27" path="res://assets/YU/yu_stance_forward_walk-Sheet2.png" id="3_q01xs"]
 [ext_resource type="Texture2D" uid="uid://c1uemi5kad8vr" path="res://assets/YU/yu_boxing_punch2-Sheet.png" id="4_q01xs"]
 [ext_resource type="AudioStream" uid="uid://wqck4ihvkgyk" path="res://assets/Sound/fuuuuh.mp3" id="6_5v37g"]
-[ext_resource type="PackedScene" uid="uid://cxcbtes6kf0fp" path="res://Scene/Colliders/damage_emmiter.tscn" id="7_7cq13"]
-[ext_resource type="PackedScene" uid="uid://crdvxp8wrd2eg" path="res://Scene/Colliders/damage_reciver.tscn" id="8_tqgsj"]
+[ext_resource type="PackedScene" uid="uid://cxcbtes6kf0fp" path="res://Scene/Colliders/damage.tscn" id="7_7cq13"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rl547"]
 atlas = ExtResource("2_2jvr2")
@@ -399,6 +398,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkw6c"]
+size = Vector2(64, 176)
+
 [sub_resource type="Animation" id="Animation_5v37g"]
 length = 0.36666667
 tracks/0/type = "value"
@@ -411,38 +413,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_7cq13"]
 resource_name = "punch_yu"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.07007486, 0.14100417),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [3, 2, 1]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.14653887),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_on_animation_finished"
-}]
-}
+length = 0.005
 
 [sub_resource type="Animation" id="Animation_tqgsj"]
 resource_name = "punchyu"
@@ -467,27 +443,25 @@ _data = {
 &"punchyu": SubResource("Animation_tqgsj")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqgsj"]
-size = Vector2(65, 42)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7cq13"]
-size = Vector2(50.5, 31)
+size = Vector2(53, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_er5ir"]
-size = Vector2(56, 88)
-
-[node name="Yu idle" type="CharacterBody2D" unique_id=883593260 groups=["yu"]]
+[node name="Yu idle" type="CharacterBody2D" unique_id=883593260]
 visibility_layer = 9
-script = ExtResource("1_7cq13")
+collision_mask = 0
+script = ExtResource("1_2jvr2")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1741049357]
 z_as_relative = false
 position = Vector2(-296, -112)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_j8wvr")
-animation = &"stance_idle"
-autoplay = "stance_idle"
-frame = 3
+animation = &"punch"
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=161622378]
+position = Vector2(-288, -112)
+shape = SubResource("RectangleShape2D_rkw6c")
 
 [node name="sfx_punch" type="AudioStreamPlayer" parent="." unique_id=2124749313]
 stream = ExtResource("6_5v37g")
@@ -497,25 +471,12 @@ volume_db = -30.895
 root_node = NodePath("../AnimatedSprite2D2")
 libraries/ = SubResource("AnimationLibrary_er5ir")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=103459919]
-position = Vector2(-288.5, -43)
-shape = SubResource("RectangleShape2D_tqgsj")
-debug_color = Color(3.85046e-06, 0.63698846, 0.40191907, 0.41960785)
-
-[node name="Damage_emmiter" parent="." unique_id=230561206 instance=ExtResource("7_7cq13")]
-position = Vector2(-288.5, -43)
-collision_mask = 16
+[node name="Damage" parent="." unique_id=230561206 instance=ExtResource("7_7cq13")]
+collision_mask = 8
 monitoring = true
 
-[node name="CollisionShape2D" parent="Damage_emmiter" index="0" unique_id=613323928]
-position = Vector2(48.5, -61)
+[node name="CollisionShape2D" parent="Damage" index="0" unique_id=494476276]
+position = Vector2(-234.5, -104)
 shape = SubResource("RectangleShape2D_7cq13")
 
-[node name="damage_reciver" parent="." unique_id=1793983985 instance=ExtResource("8_tqgsj")]
-
-[node name="CollisionShape2D" parent="damage_reciver" index="0" unique_id=390005199]
-position = Vector2(-292, -92)
-shape = SubResource("RectangleShape2D_er5ir")
-
-[editable path="Damage_emmiter"]
-[editable path="damage_reciver"]
+[editable path="Damage"]

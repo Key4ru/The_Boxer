@@ -1,12 +1,10 @@
 [gd_scene format=3 uid="uid://dwta2nxucq1kl"]
 
 [ext_resource type="Texture2D" uid="uid://qws5hqbw7my8" path="res://assets/Takeda/backward walk stance.png" id="1_a6mir"]
-[ext_resource type="Script" uid="uid://bvycxo4iy14hs" path="res://Scene/Takeda/takeda.gd" id="1_yovkc"]
+[ext_resource type="Script" uid="uid://crcb4ud3blv6k" path="res://Script/Takeda/takeda.gd" id="1_lht0r"]
 [ext_resource type="Texture2D" uid="uid://d10vhpeoo1un" path="res://assets/Takeda/forward walk stance.png" id="2_lht0r"]
 [ext_resource type="Texture2D" uid="uid://cvkr0n4c8wkpf" path="res://assets/Takeda/stance idle.png" id="3_yovkc"]
 [ext_resource type="Texture2D" uid="uid://cl4wooe8pdl7y" path="res://assets/Takeda/Takeda_stance_punch-Sheet.png" id="4_qewtd"]
-[ext_resource type="PackedScene" uid="uid://cxcbtes6kf0fp" path="res://Scene/Colliders/damage_emmiter.tscn" id="6_yovkc"]
-[ext_resource type="PackedScene" uid="uid://crdvxp8wrd2eg" path="res://Scene/Colliders/damage_reciver.tscn" id="7_qewtd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kyto7"]
 atlas = ExtResource("1_a6mir")
@@ -187,7 +185,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mojyl")
 }],
-"loop": true,
+"loop": false,
 "name": &"backward_walk",
 "speed": 5.0
 }, {
@@ -225,7 +223,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eq1b6")
 }],
-"loop": true,
+"loop": false,
 "name": &"forward_walk",
 "speed": 5.0
 }, {
@@ -282,52 +280,23 @@ size = Vector2(80, 42)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lht0r"]
 size = Vector2(1155.25, 896.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qewtd"]
-size = Vector2(61, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kyto7"]
-size = Vector2(56, 80)
-
 [node name="takeda" type="CharacterBody2D" unique_id=1536849035]
 collision_layer = 0
-script = ExtResource("1_yovkc")
+script = ExtResource("1_lht0r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1173331250]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_2mkyd")
-animation = &"idle"
+animation = &"backward_walk"
 autoplay = "idle"
-flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=441048210]
-position = Vector2(-8, 72)
+position = Vector2(8, 72)
 shape = SubResource("RectangleShape2D_3v531")
 debug_color = Color(0, 0.63529414, 0.4, 0.41960785)
 
 [node name="VisionArea" type="Area2D" parent="." unique_id=1825251727]
-collision_layer = 0
-collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea" unique_id=1977653663]
-visible = false
 position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_lht0r")
-
-[node name="Damage_emmiter" parent="." unique_id=230561206 instance=ExtResource("6_yovkc")]
-
-[node name="CollisionShape2D" parent="Damage_emmiter" index="0" unique_id=613323928]
-position = Vector2(-57.5, 8)
-shape = SubResource("RectangleShape2D_qewtd")
-
-[node name="damage_reciver" parent="." unique_id=1793983985 instance=ExtResource("7_qewtd")]
-
-[node name="CollisionShape2D" parent="damage_reciver" index="0" unique_id=390005199]
-position = Vector2(-8, 16)
-shape = SubResource("RectangleShape2D_kyto7")
-
-[node name="ReactionTimer" type="Timer" parent="." unique_id=135842770]
-wait_time = 0.001
-one_shot = true
-
-[editable path="Damage_emmiter"]
-[editable path="damage_reciver"]

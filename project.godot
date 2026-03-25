@@ -54,6 +54,12 @@ Attack={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="player"
+2d_render/layer_2="enemy"
+2d_physics/layer_5="enemydamagereceiver"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
