@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://du2u4a36ntp8w" path="res://buttons/Quit.png" id="7_47k5r"]
 [ext_resource type="Texture2D" uid="uid://bbvxks36ympu8" path="res://buttons/Quit_Hover.png" id="8_hag5k"]
 [ext_resource type="AudioStream" uid="uid://8gdnfk6nthqx" path="res://assets/Sound/The Marias - No One Noticed ( Extended Version Instrumental ).mp3" id="8_yok32"]
+[ext_resource type="Texture2D" uid="uid://ene7tgpq71dp" path="res://others/Title.png" id="11_klvvj"]
 
 [node name="MainMenu" type="Node2D" unique_id=531519034]
 script = ExtResource("1_fu7sn")
@@ -31,10 +32,10 @@ offset_bottom = 40.0
 
 [node name="Start" type="TextureButton" parent="Control" unique_id=243951755]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 56.0
-offset_right = 451.0
-offset_bottom = 160.0
+offset_left = 216.0
+offset_top = 328.0
+offset_right = 495.0
+offset_bottom = 400.0
 texture_normal = ExtResource("3_s2f1d")
 texture_hover = ExtResource("4_ejkra")
 stretch_mode = 0
@@ -45,10 +46,10 @@ volume_db = -28.794
 
 [node name="Tutorial" type="TextureButton" parent="Control" unique_id=291838774]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 232.0
-offset_right = 451.0
-offset_bottom = 336.0
+offset_left = 216.0
+offset_top = 424.0
+offset_right = 495.0
+offset_bottom = 496.0
 texture_normal = ExtResource("5_yok32")
 texture_hover = ExtResource("6_klvvj")
 stretch_mode = 0
@@ -59,13 +60,18 @@ volume_db = 12.818
 
 [node name="Quit" type="TextureButton" parent="Control" unique_id=320699886]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 400.0
-offset_right = 451.0
-offset_bottom = 504.0
+offset_left = 216.0
+offset_top = 520.0
+offset_right = 495.0
+offset_bottom = 592.0
 texture_normal = ExtResource("7_47k5r")
 texture_hover = ExtResource("8_hag5k")
 stretch_mode = 0
+
+[node name="Title" type="Sprite2D" parent="." unique_id=865678013]
+position = Vector2(344, 176)
+scale = Vector2(3.0850003, 3.0850003)
+texture = ExtResource("11_klvvj")
 
 [connection signal="mouse_entered" from="Control/Start" to="." method="_on_start_mouse_entered"]
 [connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
