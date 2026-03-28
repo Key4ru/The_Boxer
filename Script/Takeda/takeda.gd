@@ -1,76 +1,75 @@
-class_name takada
+class_name Takada
 extends CharacterBody2D
 
 const SPEED = 175.0
 
-enum State { IDLE, BACKWARD_WALK, FORWARD_WALK, PUNCH }
+# Added BACKWARD_WALK to match the AI
+enum State { IDLE, FORWARD_WALK, BACKWARD_WALK, PUNCH }
 var current_state = State.IDLE
 
-# ✅ Check your scene tree: Is it named 'AnimatedSprite2D' or 'AnimatedSprite2D2'?
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
 
 func _ready() -> void:
-	# 🔗 CRITICAL: This connects the signal so the punch actually ends
+	# Connect the signal so we know when the punch ends
 	sprite.animation_finished.connect(_on_animation_finished)
 
 func _physics_process(delta: float) -> void:
 	# 1. Apply Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	else:
-		velocity.y = 0
 
-	# 2. Get Input
+	# 2. Handle Input & States
 	var direction := Input.get_axis("ui_left", "ui_right")
-
-	# 3. State Logic
-	if Input.is_action_just_pressed("Attack") and can_attack():
-		enter_punch_state()
-	elif current_state != State.PUNCH:
-		if direction > 0:
-			current_state = State.FORWARD_WALK
-			sprite.flip_h = true 
-		elif direction < 0:
-			current_state = State.BACKWARD_WALK
-			sprite.flip_h = true # ✅ FIXED: Now faces Left
+	
+	# We only allow movement/flipping if not currently punching
+	if current_state != State.PUNCH:
+		if Input.is_action_just_pressed("Attack"):
+			enter_punch_state()
+		elif direction != 0:
+			# Determine if walking Forward or Backward
+			# If direction is Right and we face Right -> Forward
+			# If direction is Left and we face Right -> Backward
+			if (direction > 0 and !sprite.flip_h) or (direction < 0 and sprite.flip_h):
+				current_state = State.FORWARD_WALK
+			else:
+				current_state = State.BACKWARD_WALK
+				
+			velocity.x = direction * SPEED
+			
+			# OPTIONAL: Remove the line below if you want Takada 
+			# to ONLY flip when the player presses a "Turn" button.
+			sprite.flip_h = (direction < 0)
 		else:
 			current_state = State.IDLE
-
-	# 4. Movement
-	if current_state != State.PUNCH:
-		velocity.x = direction * SPEED
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
-		# Slide to a stop during punch
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		# Friction: Slide to a stop during the punch
+		velocity.x = move_toward(velocity.x, 0, SPEED * delta * 5)
 
-	update_animations()
 	move_and_slide()
-
-func can_attack() -> bool:
-	return current_state != State.PUNCH
+	update_animations()
 
 func enter_punch_state() -> void:
 	current_state = State.PUNCH
+	# We play it here to ensure it starts instantly
 	sprite.play("punch")
 
 func update_animations() -> void:
-	# 🛑 Prevent walking animations from overriding the punch
+	# If we are punching, don't let the walk/idle animations override it
 	if current_state == State.PUNCH:
-		return
+		return 
 
 	match current_state:
 		State.IDLE:
-			sprite.play("idle") 
+			sprite.play("idle")
 		State.FORWARD_WALK:
 			sprite.play("forward_walk")
 		State.BACKWARD_WALK:
 			sprite.play("backward_walk")
 
 func _on_animation_finished() -> void:
-	# Reset state once the punch animation completes
 	if sprite.animation == "punch":
 		current_state = State.IDLE
 
-# Fixed typo from "enit" to "emit"
 func on_emit_damage(damage_receiver: Area2D) -> void:
 	print("Hit: ", damage_receiver.name)

@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://crj4usfpktdm6"]
+
+[ext_resource type="Script" uid="uid://bej3c6mghsjxn" path="res://Script/tutorial.gd" id="1_7n6eb"]
+[ext_resource type="AudioStream" uid="uid://cxcs6a0bynyay" path="res://assets/Sound/Syn Cole - Feel Good  Future House  NCS - Copyright Free Music.mp3" id="2_aqehm"]
+[ext_resource type="Texture2D" uid="uid://du0k4sq1o3w7u" path="res://BG/gym - Copy.png" id="2_qwkqa"]
+[ext_resource type="Texture2D" uid="uid://cbfq3sc5d5gg1" path="res://buttons/Back.png" id="3_qwkqa"]
+[ext_resource type="Texture2D" uid="uid://4qsjvt8gw55n" path="res://buttons/Back_Hover.png" id="4_aqehm"]
+[ext_resource type="Texture2D" uid="uid://5nhynh0x4301" path="res://assets/Invisbleplatform-1-export.png" id="5_qwkqa"]
+[ext_resource type="PackedScene" uid="uid://bbswsyrvei0q5" path="res://Scene/Yu_animation/yu.tscn" id="6_aqehm"]
+[ext_resource type="PackedScene" uid="uid://dwta2nxucq1kl" path="res://Scene/Takeda/takeda.tscn" id="8_aqehm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4cpsy"]
+size = Vector2(1149, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwkqa"]
+size = Vector2(1857.0527, 1112.1685)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqehm"]
+size = Vector2(1885.5093, 1112.4805)
+
+[node name="Tutorial" type="Node2D" unique_id=764362344]
+script = ExtResource("1_7n6eb")
+
+[node name="BG_Music" type="AudioStreamPlayer2D" parent="." unique_id=1793867648]
+stream = ExtResource("2_aqehm")
+volume_db = -33.265
+autoplay = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1740983104]
+
+[node name="NewSprite" type="Sprite2D" parent="ParallaxBackground" unique_id=1146761679]
+position = Vector2(580, 324.25)
+scale = Vector2(1.1230469, 1.0965812)
+texture = ExtResource("2_qwkqa")
+
+[node name="Control" type="Control" parent="." unique_id=991363205]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back" type="TextureButton" parent="Control" unique_id=83900792]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 202.25
+offset_bottom = 70.0
+texture_normal = ExtResource("3_qwkqa")
+texture_hover = ExtResource("4_aqehm")
+stretch_mode = 0
+
+[node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("6_aqehm")]
+position = Vector2(376, 624)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1237247230]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=846205929]
+position = Vector2(580, 642)
+shape = SubResource("RectangleShape2D_4cpsy")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=567553756]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(593, 649)
+scale = Vector2(0.59973955, 0.071174376)
+texture = ExtResource("5_qwkqa")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=184712689]
+position = Vector2(1096, 480)
+scale = Vector2(0.06354166, 0.2958185)
+shape = SubResource("RectangleShape2D_qwkqa")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D" unique_id=481838426]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(1096, 480)
+scale = Vector2(0.06354166, 0.2958185)
+texture = ExtResource("5_qwkqa")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1579840100]
+position = Vector2(-5, 474)
+scale = Vector2(0.06523437, 0.30382562)
+shape = SubResource("RectangleShape2D_aqehm")
+
+[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D" unique_id=1056393064]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-11, 475)
+scale = Vector2(0.06523437, 0.30382562)
+texture = ExtResource("5_qwkqa")
+
+[node name="takeda" parent="." unique_id=1536849035 node_paths=PackedStringArray("player") instance=ExtResource("8_aqehm")]
+position = Vector2(928, 512)
+player = NodePath("../Yu idle")
+
+[connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]

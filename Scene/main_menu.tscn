@@ -55,7 +55,7 @@ stretch_mode = 0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/Tutorial" unique_id=561668132]
 stream = ExtResource("8_yok32")
-volume_db = 12.893
+volume_db = 12.818
 
 [node name="Quit" type="TextureButton" parent="Control" unique_id=320699886]
 layout_mode = 0
