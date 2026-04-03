@@ -498,8 +498,7 @@ shape = SubResource("RectangleShape2D_er5ir")
 [node name="HitEffect" parent="." unique_id=1395702610 instance=ExtResource("9_er5ir")]
 
 [node name="AnimatedSprite2D" parent="HitEffect" index="0" unique_id=1881729406]
-visible = false
-position = Vector2(-56.000023, -104)
+position = Vector2(-183.99998, -102.99999)
 
 [editable path="DamageEmitter"]
 [editable path="HitEffect"]

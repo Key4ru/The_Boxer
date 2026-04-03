@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwta2nxucq1kl"]
 
 [ext_resource type="Texture2D" uid="uid://qws5hqbw7my8" path="res://assets/Takeda/backward walk stance.png" id="1_a6mir"]
+[ext_resource type="Script" uid="uid://bvycxo4iy14hs" path="res://Scene/Takeda/takeda.gd" id="1_yovkc"]
 [ext_resource type="Texture2D" uid="uid://d10vhpeoo1un" path="res://assets/Takeda/forward walk stance.png" id="2_lht0r"]
 [ext_resource type="Texture2D" uid="uid://cvkr0n4c8wkpf" path="res://assets/Takeda/stance idle.png" id="3_yovkc"]
 [ext_resource type="Texture2D" uid="uid://bjnmej20h6xrm" path="res://assets/Takeda/heavy_punch.png" id="4_kyto7"]
@@ -122,22 +123,6 @@ region = Rect2(256, 0, 64, 64)
 atlas = ExtResource("4_kyto7")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s3icj"]
-atlas = ExtResource("4_qewtd")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2mkyd"]
-atlas = ExtResource("4_qewtd")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3v531"]
-atlas = ExtResource("4_qewtd")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_64a8q"]
-atlas = ExtResource("4_qewtd")
-region = Rect2(192, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_41pjy"]
 atlas = ExtResource("3_yovkc")
 region = Rect2(0, 0, 64, 64)
@@ -169,6 +154,22 @@ region = Rect2(384, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0wdw2"]
 atlas = ExtResource("3_yovkc")
 region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3icj"]
+atlas = ExtResource("4_qewtd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mkyd"]
+atlas = ExtResource("4_qewtd")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v531"]
+atlas = ExtResource("4_qewtd")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64a8q"]
+atlas = ExtResource("4_qewtd")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_781jw"]
 animations = [{
@@ -209,7 +210,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_osa2m")
 }],
-"loop": false,
+"loop": true,
 "name": &"backward_walk",
 "speed": 5.0
 }, {
@@ -247,7 +248,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kusmh")
 }],
-"loop": false,
+"loop": true,
 "name": &"forward_walk",
 "speed": 6.0
 }, {
@@ -270,26 +271,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tmwcg")
 }],
-"loop": false,
+"loop": true,
 "name": &"heavy_punch",
 "speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s3icj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2mkyd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3v531")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_64a8q")
-}],
-"loop": false,
-"name": &"light_punch",
-"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -317,24 +301,41 @@ animations = [{
 "texture": SubResource("AtlasTexture_0wdw2")
 }],
 "loop": true,
-"name": &"stance_idle",
-"speed": 6.0
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3icj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mkyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v531")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64a8q")
+}],
+"loop": true,
+"name": &"light_punch",
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtxce"]
-size = Vector2(104, 45)
+size = Vector2(80, 42)
 
 [node name="takeda" type="CharacterBody2D" unique_id=68541152]
+script = ExtResource("1_yovkc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1419239396]
-position = Vector2(312.00003, 104)
-scale = Vector2(7, 7)
+position = Vector2(312, 104)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_781jw")
-animation = &"backward_walk"
-autoplay = "stance_idle"
+animation = &"idle"
+autoplay = "idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=437527100]
-position = Vector2(296, 241.5)
-rotation = -3.1415925
+position = Vector2(304, 176)
 shape = SubResource("RectangleShape2D_dtxce")
