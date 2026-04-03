@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbswsyrvei0q5"]
 
-[ext_resource type="Script" uid="uid://bsqa00hwf4dxe" path="res://Script/Yu/yu.gd" id="1_7cq13"]
+[ext_resource type="Script" uid="uid://l5yk44gdkhbf" path="res://Scene/Yu_animation/yu.gd" id="1_er5ir"]
 [ext_resource type="Texture2D" uid="uid://dgdyfvkdf1c64" path="res://assets/YU/yu_stance_backward_walk-Sheet.png" id="2_2jvr2"]
 [ext_resource type="Texture2D" uid="uid://dp8rawq8mf5sh" path="res://assets/YU/yu_stance_idle-Sheet.png" id="2_ifktp"]
 [ext_resource type="Texture2D" uid="uid://blcgmr572md27" path="res://assets/YU/yu_stance_forward_walk-Sheet2.png" id="3_q01xs"]
@@ -465,7 +465,7 @@ size = Vector2(84, 45.25)
 
 [node name="Yu idle" type="CharacterBody2D" unique_id=883593260 groups=["yu"]]
 visibility_layer = 9
-script = ExtResource("1_7cq13")
+script = ExtResource("1_er5ir")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1741049357]
 z_as_relative = false
@@ -498,8 +498,7 @@ shape = SubResource("RectangleShape2D_er5ir")
 [node name="HitEffect" parent="." unique_id=1395702610 instance=ExtResource("9_er5ir")]
 
 [node name="AnimatedSprite2D" parent="HitEffect" index="0" unique_id=1881729406]
-visible = false
-position = Vector2(-56.000023, -104)
+position = Vector2(-183.99998, -102.99999)
 
 [editable path="DamageEmitter"]
 [editable path="HitEffect"]
