@@ -54,7 +54,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hit",
-"speed": 14.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -69,16 +69,15 @@ animations = [{
 size = Vector2(104, 276)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1b2c"]
-size = Vector2(88, 276)
+size = Vector2(72, 276)
 
-[node name="Dummy" type="CharacterBody2D" unique_id=2041271841 groups=["enemy"]]
+[node name="Dummy" type="CharacterBody2D" unique_id=2041271841]
 script = ExtResource("1_g1ln5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=155391154]
 scale = Vector2(7.125, 7.125)
 sprite_frames = SubResource("SpriteFrames_337xv")
 animation = &"hit"
-frame_progress = 0.67140687
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1525859324]
 position = Vector2(-4, 26)
@@ -86,8 +85,8 @@ shape = SubResource("RectangleShape2D_qhkht")
 
 [node name="HitArea" type="Area2D" parent="." unique_id=1460454980]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1197534954 groups=["enemy"]]
-position = Vector2(-12, 26)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1197534954]
+position = Vector2(-20, 26)
 shape = SubResource("RectangleShape2D_u1b2c")
 debug_color = Color(0.9443047, 9.048581e-06, 0.5999396, 0.41960785)
 

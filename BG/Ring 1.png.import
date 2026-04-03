@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du0k4sq1o3w7u"
-path="res://.godot/imported/gym - Copy.png-3712b1d638fe4c90145bcbee575ad5f1.ctex"
+uid="uid://bruyp7mkdkra6"
+path="res://.godot/imported/Ring 1.png-09a8df7023628a48677ba38d1aeef9ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BG/gym - Copy.png"
-dest_files=["res://.godot/imported/gym - Copy.png-3712b1d638fe4c90145bcbee575ad5f1.ctex"]
+source_file="res://BG/Ring 1.png"
+dest_files=["res://.godot/imported/Ring 1.png-09a8df7023628a48677ba38d1aeef9ad.ctex"]
 
 [params]
 

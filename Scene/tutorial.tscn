@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dihuvqte04gcy" path="res://BG/Gym_Background.png" id="3_aqehm"]
 [ext_resource type="Texture2D" uid="uid://cbfq3sc5d5gg1" path="res://buttons/Back.png" id="3_qwkqa"]
 [ext_resource type="Texture2D" uid="uid://4qsjvt8gw55n" path="res://buttons/Back_Hover.png" id="4_aqehm"]
-[ext_resource type="Texture2D" uid="uid://5nhynh0x4301" path="res://assets/Invisbleplatform-1-export.png" id="5_qwkqa"]
-[ext_resource type="PackedScene" uid="uid://bbswsyrvei0q5" path="res://Scene/Yu_animation/yu.tscn" id="6_aqehm"]
+[ext_resource type="PackedScene" uid="uid://nyt0y2jy4117" path="res://Scene/Yu/yu.tscn" id="6_4cpsy"]
 [ext_resource type="PackedScene" uid="uid://dbumi8yql8m2i" path="res://Scene/dummy/dummy.tscn" id="7_qwkqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cpsy"]
@@ -28,7 +27,7 @@ autoplay = true
 
 [node name="NewSprite" type="Sprite2D" parent="ParallaxBackground" unique_id=1146761679]
 position = Vector2(640, 360)
-scale = Vector2(8.01101, 7.822222)
+scale = Vector2(8, 8)
 texture = ExtResource("3_aqehm")
 
 [node name="Control" type="Control" parent="." unique_id=991363205]
@@ -53,38 +52,21 @@ stretch_mode = 0
 position = Vector2(640, 672)
 shape = SubResource("RectangleShape2D_4cpsy")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=567553756]
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(624, 799.99994)
-scale = Vector2(0.66634107, 0.07907836)
-texture = ExtResource("5_qwkqa")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=184712689]
-position = Vector2(1280, 512)
+position = Vector2(1342, 512)
 scale = Vector2(0.06354166, 0.2958185)
 shape = SubResource("RectangleShape2D_qwkqa")
-
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D" unique_id=481838426]
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(1272, 488)
-scale = Vector2(0.06354166, 0.2958185)
-texture = ExtResource("5_qwkqa")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1579840100]
 position = Vector2(-64, 503.5)
 scale = Vector2(0.06523437, 0.30382562)
 shape = SubResource("RectangleShape2D_aqehm")
 
-[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D" unique_id=1056393064]
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(-200, 472)
-scale = Vector2(0.06523437, 0.30382562)
-texture = ExtResource("5_qwkqa")
+[node name="Yu" parent="." unique_id=930258384 instance=ExtResource("6_4cpsy")]
+z_index = 2
+position = Vector2(143, 468)
 
-[node name="Dummy" parent="." unique_id=951896067 instance=ExtResource("7_qwkqa")]
-position = Vector2(976, 472)
-
-[node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("6_aqehm")]
-position = Vector2(448, 584)
+[node name="Dummy" parent="." unique_id=2041271841 instance=ExtResource("7_qwkqa")]
+position = Vector2(976, 468)
 
 [connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]

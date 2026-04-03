@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://gg5p1pbixo5h"]
+
+[ext_resource type="Texture2D" uid="uid://bruyp7mkdkra6" path="res://BG/Ring 1.png" id="1_8twhv"]
+[ext_resource type="PackedScene" uid="uid://nyt0y2jy4117" path="res://Scene/Yu/yu.tscn" id="2_sxagu"]
+[ext_resource type="PackedScene" uid="uid://dwta2nxucq1kl" path="res://Scene/Takeda/takeda.tscn" id="3_cfqvl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8twhv"]
+size = Vector2(1286.5, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sxagu"]
+size = Vector2(1935.7393, 1340.349)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfqvl"]
+size = Vector2(1885.5093, 1372.498)
+
+[node name="Level1" type="Node2D" unique_id=1989593043]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1995349347]
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground" unique_id=1087300011]
+position = Vector2(640, 360.00003)
+scale = Vector2(8, 8)
+texture = ExtResource("1_8twhv")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=955841274]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1997906899]
+position = Vector2(640, 672)
+shape = SubResource("RectangleShape2D_8twhv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1665520882]
+position = Vector2(1342, 512)
+scale = Vector2(0.06354166, 0.2958185)
+shape = SubResource("RectangleShape2D_sxagu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1398305464]
+position = Vector2(-64, 503.5)
+scale = Vector2(0.06523437, 0.30382562)
+shape = SubResource("RectangleShape2D_cfqvl")
+
+[node name="Yu" parent="." unique_id=930258384 instance=ExtResource("2_sxagu")]
+position = Vector2(144, 468)
+
+[node name="Takeda" parent="." unique_id=1097823246 instance=ExtResource("3_cfqvl")]
+position = Vector2(1133, 468)

@@ -20,8 +20,8 @@ script = ExtResource("1_fu7sn")
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground" unique_id=569906467]
 
 [node name="MainMenu" type="Sprite2D" parent="ParallaxBackground" unique_id=1867668829]
-position = Vector2(645.7449, 362.49994)
-scale = Vector2(3.2337244, 2.6779022)
+position = Vector2(640, 360)
+scale = Vector2(3.2, 2.7883897)
 texture = ExtResource("2_jix8l")
 
 [node name="Control" type="Control" parent="." unique_id=240052]
@@ -32,10 +32,10 @@ offset_bottom = 40.0
 
 [node name="Start" type="TextureButton" parent="Control" unique_id=243951755]
 layout_mode = 0
-offset_left = 216.0
-offset_top = 328.0
-offset_right = 495.0
-offset_bottom = 400.0
+offset_left = 276.50003
+offset_top = 394.25
+offset_right = 555.5
+offset_bottom = 466.25
 texture_normal = ExtResource("3_s2f1d")
 texture_hover = ExtResource("4_ejkra")
 stretch_mode = 0
@@ -46,10 +46,10 @@ volume_db = -28.794
 
 [node name="Tutorial" type="TextureButton" parent="Control" unique_id=291838774]
 layout_mode = 0
-offset_left = 216.0
-offset_top = 424.0
-offset_right = 495.0
-offset_bottom = 496.0
+offset_left = 276.50003
+offset_top = 490.25
+offset_right = 555.5
+offset_bottom = 562.25
 texture_normal = ExtResource("5_yok32")
 texture_hover = ExtResource("6_klvvj")
 stretch_mode = 0
@@ -60,16 +60,16 @@ volume_db = 12.818
 
 [node name="Quit" type="TextureButton" parent="Control" unique_id=320699886]
 layout_mode = 0
-offset_left = 216.0
-offset_top = 520.0
-offset_right = 495.0
-offset_bottom = 592.0
+offset_left = 276.50003
+offset_top = 586.25
+offset_right = 555.5
+offset_bottom = 658.25
 texture_normal = ExtResource("7_47k5r")
 texture_hover = ExtResource("8_hag5k")
 stretch_mode = 0
 
 [node name="Title" type="Sprite2D" parent="." unique_id=865678013]
-position = Vector2(344, 176)
+position = Vector2(420.50003, 226.25002)
 scale = Vector2(3.0850003, 3.0850003)
 texture = ExtResource("11_klvvj")
 

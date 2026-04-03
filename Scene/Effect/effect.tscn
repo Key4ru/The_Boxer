@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://c8tegbstbdo5c"]
+
+[ext_resource type="Texture2D" uid="uid://b8vkcch7m2we0" path="res://effects/Hit_Effect-Sheet.png" id="1_gi12q"]
+[ext_resource type="Script" uid="uid://coedaj2cybdd" path="res://effect.gd" id="2_i0qum"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5es57"]
+atlas = ExtResource("1_gi12q")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ars8o"]
+atlas = ExtResource("1_gi12q")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtoo0"]
+atlas = ExtResource("1_gi12q")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peuc8"]
+atlas = ExtResource("1_gi12q")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_siet2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5es57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ars8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtoo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peuc8")
+}],
+"loop": false,
+"name": &"effect",
+"speed": 15.0
+}]
+
+[node name="Effect" type="AnimatedSprite2D" unique_id=780187754]
+scale = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_siet2")
+animation = &"effect"
+autoplay = "effect"
+script = ExtResource("2_i0qum")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

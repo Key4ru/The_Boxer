@@ -300,7 +300,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_781jw")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 4.0
 }, {
@@ -513,5 +513,3 @@ libraries/ = SubResource("AnimationLibrary_q8qre")
 position = Vector2(-16, 34)
 shape = SubResource("RectangleShape2D_qewtd")
 debug_color = Color(0.95566195, 1.732707e-06, 0.54943484, 0.41960785)
-
-[node name="ReactionTimer" type="Timer" parent="." unique_id=157415457]
