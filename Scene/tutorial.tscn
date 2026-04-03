@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://4qsjvt8gw55n" path="res://buttons/Back_Hover.png" id="4_aqehm"]
 [ext_resource type="Texture2D" uid="uid://5nhynh0x4301" path="res://assets/Invisbleplatform-1-export.png" id="5_qwkqa"]
 [ext_resource type="PackedScene" uid="uid://bbswsyrvei0q5" path="res://Scene/Yu_animation/yu.tscn" id="6_aqehm"]
-[ext_resource type="PackedScene" uid="uid://dwta2nxucq1kl" path="res://Scene/Takeda/takeda.tscn" id="8_aqehm"]
+[ext_resource type="PackedScene" uid="uid://dbumi8yql8m2i" path="res://Scene/dummy/dummy.tscn" id="7_qwkqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cpsy"]
 size = Vector2(1286.5, 80)
@@ -60,7 +60,7 @@ scale = Vector2(0.66634107, 0.07907836)
 texture = ExtResource("5_qwkqa")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=184712689]
-position = Vector2(1344, 513.75)
+position = Vector2(1280, 512)
 scale = Vector2(0.06354166, 0.2958185)
 shape = SubResource("RectangleShape2D_qwkqa")
 
@@ -81,10 +81,10 @@ position = Vector2(-200, 472)
 scale = Vector2(0.06523437, 0.30382562)
 texture = ExtResource("5_qwkqa")
 
-[node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("6_aqehm")]
-position = Vector2(832, 584)
+[node name="Dummy" parent="." unique_id=951896067 instance=ExtResource("7_qwkqa")]
+position = Vector2(976, 472)
 
-[node name="takeda" parent="." unique_id=68541152 instance=ExtResource("8_aqehm")]
-position = Vector2(864, 368)
+[node name="Yu idle" parent="." unique_id=883593260 instance=ExtResource("6_aqehm")]
+position = Vector2(448, 584)
 
 [connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]

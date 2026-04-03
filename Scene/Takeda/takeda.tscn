@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwta2nxucq1kl"]
 
 [ext_resource type="Texture2D" uid="uid://qws5hqbw7my8" path="res://assets/Takeda/backward walk stance.png" id="1_a6mir"]
+[ext_resource type="Script" uid="uid://bvycxo4iy14hs" path="res://Scene/Takeda/takeda.gd" id="1_yovkc"]
 [ext_resource type="Texture2D" uid="uid://d10vhpeoo1un" path="res://assets/Takeda/forward walk stance.png" id="2_lht0r"]
 [ext_resource type="Texture2D" uid="uid://cvkr0n4c8wkpf" path="res://assets/Takeda/stance idle.png" id="3_yovkc"]
 [ext_resource type="Texture2D" uid="uid://bjnmej20h6xrm" path="res://assets/Takeda/heavy_punch.png" id="4_kyto7"]
@@ -322,12 +323,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtxce"]
-size = Vector2(104, 45)
+size = Vector2(104, 42)
 
 [node name="takeda" type="CharacterBody2D" unique_id=68541152]
+script = ExtResource("1_yovkc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1419239396]
-position = Vector2(312.00003, 104)
+position = Vector2(472, 255.99998)
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_781jw")
 animation = &"backward_walk"
@@ -335,6 +337,5 @@ autoplay = "stance_idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=437527100]
-position = Vector2(296, 241.5)
-rotation = -3.1415925
+position = Vector2(376, 264)
 shape = SubResource("RectangleShape2D_dtxce")
