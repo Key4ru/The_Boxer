@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bruyp7mkdkra6" path="res://BG/Ring 1.png" id="1_8twhv"]
 [ext_resource type="PackedScene" uid="uid://nyt0y2jy4117" path="res://Scene/Yu/yu.tscn" id="2_sxagu"]
 [ext_resource type="PackedScene" uid="uid://dwta2nxucq1kl" path="res://Scene/Takeda/takeda.tscn" id="3_cfqvl"]
+[ext_resource type="PackedScene" uid="uid://bkey0ugncnhcs" path="res://healthbar/ui.tscn" id="4_pporg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8twhv"]
 size = Vector2(1286.5, 80)
@@ -43,3 +44,5 @@ position = Vector2(144, 468)
 
 [node name="Takeda" parent="." unique_id=1097823246 instance=ExtResource("3_cfqvl")]
 position = Vector2(1133, 468)
+
+[node name="UI" parent="." unique_id=787495858 instance=ExtResource("4_pporg")]

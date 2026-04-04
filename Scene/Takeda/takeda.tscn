@@ -476,7 +476,7 @@ size = Vector2(96, 260)
 script = ExtResource("1_yovkc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=274849493]
-scale = Vector2(-7.125, 7.125)
+scale = Vector2(7.125, 7.125)
 sprite_frames = SubResource("SpriteFrames_wnpes")
 animation = &"light_punch"
 autoplay = "idle"
@@ -515,3 +515,7 @@ shape = SubResource("RectangleShape2D_qewtd")
 debug_color = Color(0.95566195, 1.732707e-06, 0.54943484, 0.41960785)
 
 [node name="ReactionTimer" type="Timer" parent="." unique_id=157415457]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Light Punch" to="." method="_on_light_punch_body_entered"]
+[connection signal="body_entered" from="Heavy Punch" to="." method="_on_heavy_punch_body_entered"]

@@ -11,19 +11,24 @@ extends CharacterBody2D
 
 const SPEED = 175.0
 const HEALTH_MAX = 50
-const LIGHT_PUNCH_DAMAGE = 2
-const HEAVY_PUNCH_DAMAGE = 4
-const LIGHT_PUNCH_COOLDOWN = 1.5
-const HEAVY_PUNCH_COOLDOWN = 3.0
+const LIGHT_PUNCH_DAMAGE = 10
+const HEAVY_PUNCH_DAMAGE = 20
+const LIGHT_PUNCH_COOLDOWN = 0.2
+const HEAVY_PUNCH_COOLDOWN = 0.7
 
 const DIST_CHASE: float = 350.0
 const DIST_FAR: float = 80.0
-const DIST_IDEAL: float = 45.0
-const DIST_CLOSE: float = 20.0
+const DIST_IDEAL: float = 60.0
+const DIST_CLOSE: float = 40.0
+
+const STAGGER_MIN: float = 0.2
+const STAGGER_MAX: float = 0.45
 
 enum State { IDLE, FORWARD_WALK, BACKWARD_WALK, PUNCH }
+enum Phase { IDLE, RETREAT, AGGRESSIVE }
 
 var current_state: State = State.IDLE
+var current_phase: Phase = Phase.IDLE
 var health: int = HEALTH_MAX
 
 var doing_combo: bool = false
@@ -32,6 +37,8 @@ var max_combo: int = 3
 
 var light_punch_timer: float = 0.0
 var heavy_punch_timer: float = 0.0
+var stagger_timer: float = 0.0
+var decision_timer: float = 0.0
 
 var current_attack: String = ""
 var hit_registered: bool = false
@@ -39,18 +46,31 @@ var hit_registered: bool = false
 var punish_window: float = 0.0
 var player_was_punching: bool = false
 
-func _ready():
+var consecutive_hits: int = 0
+var consecutive_misses: int = 0
+var locked_dir: float = 1.0
+var is_stepping_back: bool = false
+var stepback_timer: float = 0.0
+
+func _ready() -> void:
 	add_to_group("enemy")
 	anim_player.animation_finished.connect(_on_animation_finished)
-	anim_player.play("idle")
+
+	if reaction_timer:
+		reaction_timer.one_shot = true
+
+	if anim_player.has_animation("idle"):
+		anim_player.play("idle")
+	else:
+		animated_sprite.play("idle")
 
 	if player == null:
 		player = get_tree().get_first_node_in_group("player")
 
 	if not player:
-		print("DEBUG ERROR: No player found!")
+		push_error("BasicTakeda: No player found in group 'player'!")
 	else:
-		print("DEBUG: BasicTakeda found player: ", player.name)
+		print("BasicTakeda: found player → ", player.name)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -58,9 +78,17 @@ func _physics_process(delta: float) -> void:
 
 	light_punch_timer = max(light_punch_timer - delta, 0.0)
 	heavy_punch_timer = max(heavy_punch_timer - delta, 0.0)
+	decision_timer = max(decision_timer - delta, 0.0)
+	stepback_timer = max(stepback_timer - delta, 0.0)
 
 	if punish_window > 0.0:
 		punish_window -= delta
+
+	if stagger_timer > 0.0:
+		stagger_timer -= delta
+		velocity.x = move_toward(velocity.x, 0, SPEED * delta * 4.0)
+		move_and_slide()
+		return
 
 	if player == null:
 		move_and_slide()
@@ -69,6 +97,14 @@ func _physics_process(delta: float) -> void:
 	var dir: float = sign(player.global_position.x - global_position.x)
 	var dist: float = abs(player.global_position.x - global_position.x)
 
+	# Only update locked_dir when far enough — prevents flicker when overlapping
+	if dist > DIST_CLOSE:
+		locked_dir = dir
+
+	# Sprite always uses locked_dir so it never flickers during overlap
+	if current_state != State.PUNCH:
+		animated_sprite.flip_h = locked_dir < 0
+
 	var player_punching: bool = _is_player_punching()
 	if player_punching and not player_was_punching:
 		punish_window = 0.45
@@ -76,6 +112,34 @@ func _physics_process(delta: float) -> void:
 
 	if current_state == State.PUNCH:
 		velocity.x = move_toward(velocity.x, 0, SPEED * delta * 4.0)
+		move_and_slide()
+		update_animations()
+		return
+
+	# Step-back in progress — keep moving back until timer expires
+	if stepback_timer > 0.0:
+		velocity.x = -locked_dir * SPEED * 1.2
+		current_state = State.BACKWARD_WALK
+		move_and_slide()
+		update_animations()
+		return
+
+	# Check collision with player from last frame and trigger a clean step-back
+	for i in get_slide_collision_count():
+		if get_slide_collision(i).get_collider() == player:
+			is_stepping_back = true
+			stepback_timer = 0.4
+			velocity.x = -locked_dir * SPEED * 1.2
+			current_state = State.BACKWARD_WALK
+			move_and_slide()
+			update_animations()
+			return
+
+	# Also step back if dist is too small (pushed without slide collision registering)
+	if dist < DIST_CLOSE:
+		stepback_timer = 0.4
+		velocity.x = -locked_dir * SPEED * 1.2
+		current_state = State.BACKWARD_WALK
 		move_and_slide()
 		update_animations()
 		return
@@ -93,56 +157,59 @@ func _physics_process(delta: float) -> void:
 	elif dist > DIST_FAR:
 		velocity.x = dir * SPEED
 		current_state = State.FORWARD_WALK
-		if randf() < 0.003:
+		if randf() < 0.008:
 			_enter_punch(_pick_punch())
 	elif dist > DIST_IDEAL:
 		if punish_window > 0.0:
 			punish_window = 0.0
 			_enter_punch(_pick_punch())
-		else:
+		elif decision_timer <= 0.0:
 			_mid_range_decision(dir, delta)
-	elif dist > DIST_CLOSE:
+	else:
 		if punish_window > 0.0:
 			punish_window = 0.0
 			_enter_punch(_pick_punch())
-		else:
+		elif decision_timer <= 0.0:
 			_close_range_decision(dir, delta)
-	else:
-		velocity.x = -dir * SPEED * 1.1
+
+	if is_on_wall() and sign(velocity.x) == dir:
+		velocity.x = -dir * SPEED * 0.8
 		current_state = State.BACKWARD_WALK
-		reaction_timer.start(0.1)
+		reaction_timer.start(randf_range(0.3, 0.6))
 
 	move_and_slide()
 	update_animations()
 
 func _mid_range_decision(dir: float, delta: float) -> void:
+	decision_timer = randf_range(0.25, 0.5)
 	var r: float = randf()
-	if r < 0.35:
+	if r < 0.60:
 		_enter_punch(_pick_punch())
-	elif r < 0.55:
+	elif r < 0.80:
 		_start_combo()
-	elif r < 0.75:
-		velocity.x = -dir * SPEED * 0.3
+	elif r < 0.92:
+		velocity.x = -dir * SPEED * 0.5
 		current_state = State.BACKWARD_WALK
-		reaction_timer.start(randf_range(0.1, 0.2))
+		reaction_timer.start(randf_range(0.3, 0.5))
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * delta * 2.0)
+		velocity.x = 0
 		current_state = State.IDLE
 		reaction_timer.start(randf_range(0.2, 0.4))
 
 func _close_range_decision(_dir: float, _delta: float) -> void:
+	decision_timer = randf_range(0.15, 0.3)
 	var r: float = randf()
-	if r < 0.5:
+	if r < 0.65:
 		_start_combo()
-	elif r < 0.75:
+	elif r < 0.90:
 		_enter_punch(_pick_punch())
 	else:
-		velocity.x = -sign(player.global_position.x - global_position.x) * SPEED * 0.6
+		velocity.x = -sign(player.global_position.x - global_position.x) * SPEED * 0.8
 		current_state = State.BACKWARD_WALK
-		reaction_timer.start(0.15)
+		reaction_timer.start(randf_range(0.2, 0.4))
 
 func _pick_punch() -> String:
-	if heavy_punch_timer <= 0.0 and randf() < 0.3:
+	if heavy_punch_timer <= 0.0 and randf() < 0.45:
 		return "punch_heavy"
 	return "punch_light"
 
@@ -177,7 +244,13 @@ func _is_player_punching() -> bool:
 		return false
 	if not "current_state" in player:
 		return false
-	return player.current_state == player.State.PUNCH_LIGHT
+	# Check both light and heavy punch states if available
+	if "State" in player:
+		var ps = player.State
+		if "PUNCH_HEAVY" in ps:
+			return player.current_state == ps.PUNCH_LIGHT or player.current_state == ps.PUNCH_HEAVY
+		return player.current_state == ps.PUNCH_LIGHT
+	return false
 
 func update_animations() -> void:
 	if current_state == State.PUNCH:
@@ -193,21 +266,27 @@ func update_animations() -> void:
 			if animated_sprite.animation != "backward":
 				animated_sprite.play("backward")
 
-func _on_animation_finished() -> void:
-	var anim_name = anim_player.current_animation
-
+func _on_animation_finished(anim_name: String) -> void:
 	if anim_name in ["punch_light", "punch_heavy"]:
+		if hit_registered:
+			consecutive_hits += 1
+			consecutive_misses = 0
+		else:
+			consecutive_misses += 1
+			consecutive_hits = 0
+
 		if doing_combo and combo_count < max_combo - 1:
 			combo_count += 1
-			await get_tree().create_timer(0.08).timeout
+			await get_tree().create_timer(0.07).timeout
 			_enter_punch("punch_light")
 		else:
-			doing_combo = false
-			combo_count = 0
+			doing_combo    = false
+			combo_count    = 0
 			hit_registered = false
-			current_state = State.IDLE
+			current_state  = State.IDLE
 			current_attack = ""
-			reaction_timer.start(randf_range(0.2, 0.45))
+			current_phase  = Phase.IDLE
+			reaction_timer.start(randf_range(0.18, 0.38))
 
 # --- HIT SCAN ---
 # In AnimationPlayer add a Call Method Track at the impact frame:
@@ -269,19 +348,24 @@ func spawn_hit_effect(hit_pos: Vector2) -> void:
 # --- DAMAGE & DEATH ---
 func take_damage(amount: int) -> void:
 	health -= amount
-	print("DEBUG: Enemy took ", amount, " damage. HP: ", health, "/", HEALTH_MAX)
+	print("BasicTakeda: took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
 
-	# Reset all attack state so AI doesn't get stuck
-	current_state = State.IDLE
-	hit_registered = false
+	current_state  = State.IDLE
+	current_phase  = Phase.RETREAT
 	current_attack = ""
-	doing_combo = false
-	combo_count = 0
-	velocity.x = 0
-	anim_player.play("idle")
+	hit_registered = false
+	doing_combo    = false
+	combo_count    = 0
+	velocity.x     = 0
 
-	if reaction_timer and reaction_timer.is_stopped():
-		reaction_timer.start(randf_range(0.3, 0.6))
+	decision_timer = 0.0
+	if reaction_timer:
+		reaction_timer.stop()
+
+	stagger_timer = randf_range(STAGGER_MIN, STAGGER_MAX)
+
+	anim_player.stop()
+	animated_sprite.play("idle")
 
 	if health <= 0:
 		die()
