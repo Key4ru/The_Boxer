@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i5btc4dbfpbe"
-path="res://.godot/imported/idle.png-d56f8373a7fd35434ef7bdc35f3d96a5.ctex"
+uid="uid://cmc30wx0j7rxu"
+path="res://.godot/imported/J_dead-Sheet.png-ba0e55d15b93e90fea723bf08dec5b63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Santorino/idle.png"
-dest_files=["res://.godot/imported/idle.png-d56f8373a7fd35434ef7bdc35f3d96a5.ctex"]
+source_file="res://assets/J/J_dead-Sheet.png"
+dest_files=["res://.godot/imported/J_dead-Sheet.png-ba0e55d15b93e90fea723bf08dec5b63.ctex"]
 
 [params]
 

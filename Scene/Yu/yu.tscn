@@ -498,6 +498,7 @@ _data = {
 size = Vector2(96, 260)
 
 [node name="Yu" type="CharacterBody2D" unique_id=930258384]
+z_index = 2
 script = ExtResource("1_lkid2")
 hit_effect_scene = ExtResource("2_0p401")
 

@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dixu033otq75w"]
 
 [ext_resource type="Texture2D" uid="uid://dojvkceijt4is" path="res://BG/Ring 3.png" id="1_4s2xc"]
+[ext_resource type="PackedScene" uid="uid://nyt0y2jy4117" path="res://Scene/Yu/yu.tscn" id="2_iqvll"]
+[ext_resource type="PackedScene" uid="uid://bj52lhralxbg8" path="res://Scene/J/j.tscn" id="3_llby5"]
+[ext_resource type="PackedScene" uid="uid://dlbwpcauh36q5" path="res://healthbar/ui4.tscn" id="4_mjufp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l42e6"]
 size = Vector2(1286.5, 80)
@@ -35,3 +38,11 @@ shape = SubResource("RectangleShape2D_x46gx")
 position = Vector2(-64, 503.5)
 scale = Vector2(0.06523437, 0.30382562)
 shape = SubResource("RectangleShape2D_mjp1v")
+
+[node name="Yu" parent="." unique_id=930258384 instance=ExtResource("2_iqvll")]
+position = Vector2(176, 468)
+
+[node name="J" parent="." unique_id=1887258826 instance=ExtResource("3_llby5")]
+position = Vector2(1104, 468)
+
+[node name="YJHealth" parent="." unique_id=885893485 instance=ExtResource("4_mjufp")]

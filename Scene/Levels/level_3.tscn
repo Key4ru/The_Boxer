@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://clorq7opuuc4q"]
 
 [ext_resource type="Texture2D" uid="uid://c2fw0ul7fhcfy" path="res://BG/Ring 2.png" id="1_5pqjk"]
+[ext_resource type="PackedScene" uid="uid://nyt0y2jy4117" path="res://Scene/Yu/yu.tscn" id="2_dy8xx"]
+[ext_resource type="PackedScene" uid="uid://bl4awajkn8eqg" path="res://Scene/Aaron/aaron.tscn" id="3_vf5vf"]
+[ext_resource type="PackedScene" uid="uid://c8tegbstbdo5c" path="res://Scene/Effect/effect.tscn" id="4_hv3rh"]
+[ext_resource type="PackedScene" uid="uid://bc1lgd30kwjch" path="res://healthbar/ui3.tscn" id="4_vf5vf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l42e6"]
 size = Vector2(1286.5, 80)
@@ -35,3 +39,12 @@ shape = SubResource("RectangleShape2D_x46gx")
 position = Vector2(-64, 503.5)
 scale = Vector2(0.06523437, 0.30382562)
 shape = SubResource("RectangleShape2D_mjp1v")
+
+[node name="Yu" parent="." unique_id=930258384 instance=ExtResource("2_dy8xx")]
+position = Vector2(176, 468)
+
+[node name="Aaron" parent="." unique_id=1727967856 instance=ExtResource("3_vf5vf")]
+position = Vector2(1104, 468)
+hit_effect_scene = ExtResource("4_hv3rh")
+
+[node name="YAHealth" parent="." unique_id=728357241 instance=ExtResource("4_vf5vf")]

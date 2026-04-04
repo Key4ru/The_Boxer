@@ -40,9 +40,9 @@ scale = Vector2(0.06523437, 0.30382562)
 shape = SubResource("RectangleShape2D_cfqvl")
 
 [node name="Yu" parent="." unique_id=930258384 instance=ExtResource("2_sxagu")]
-position = Vector2(144, 468)
+position = Vector2(176, 468)
 
 [node name="Takeda" parent="." unique_id=1097823246 instance=ExtResource("3_cfqvl")]
-position = Vector2(1133, 468)
+position = Vector2(1104, 468)
 
-[node name="UI" parent="." unique_id=787495858 instance=ExtResource("4_pporg")]
+[node name="YTHealth" parent="." unique_id=787495858 instance=ExtResource("4_pporg")]

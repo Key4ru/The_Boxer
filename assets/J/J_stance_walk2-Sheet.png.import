@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddkb0gb66n10o"
-path="res://.godot/imported/heavy_punch.png-6b279085b8f640448207158d7cfd6a69.ctex"
+uid="uid://n2wl3tnt18dh"
+path="res://.godot/imported/J_stance_walk2-Sheet.png-9c20318f84eb53ccc689dba1bdeb3228.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Santorino/heavy_punch.png"
-dest_files=["res://.godot/imported/heavy_punch.png-6b279085b8f640448207158d7cfd6a69.ctex"]
+source_file="res://assets/J/J_stance_walk2-Sheet.png"
+dest_files=["res://.godot/imported/J_stance_walk2-Sheet.png-9c20318f84eb53ccc689dba1bdeb3228.ctex"]
 
 [params]
 

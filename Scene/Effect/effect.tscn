@@ -40,6 +40,7 @@ animations = [{
 }]
 
 [node name="Effect" type="AnimatedSprite2D" unique_id=780187754]
+z_index = 4
 scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_siet2")
 animation = &"effect"

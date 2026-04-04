@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqtsvt1tpt0ln"
-path="res://.godot/imported/light_punch.png-342bf0e31cc83ce478d9f4a26f5d42a3.ctex"
+uid="uid://oa8dihhbq8bt"
+path="res://.godot/imported/Aaron_dead-Sheet.png-945af342d9901d5dc69f77fdf21a6610.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Santorino/light_punch.png"
-dest_files=["res://.godot/imported/light_punch.png-342bf0e31cc83ce478d9f4a26f5d42a3.ctex"]
+source_file="res://assets/Aaron/Aaron_dead-Sheet.png"
+dest_files=["res://.godot/imported/Aaron_dead-Sheet.png-945af342d9901d5dc69f77fdf21a6610.ctex"]
 
 [params]
 

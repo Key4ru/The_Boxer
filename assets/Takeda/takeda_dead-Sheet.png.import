@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ljg4btktxolv"
-path="res://.godot/imported/forward_walk.png-a0a27e3363000e23579a89a58239cd08.ctex"
+uid="uid://e566itwt6sts"
+path="res://.godot/imported/takeda_dead-Sheet.png-87855c0510edf9670c6b02dcdbf6c5b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/J/forward_walk.png"
-dest_files=["res://.godot/imported/forward_walk.png-a0a27e3363000e23579a89a58239cd08.ctex"]
+source_file="res://assets/Takeda/takeda_dead-Sheet.png"
+dest_files=["res://.godot/imported/takeda_dead-Sheet.png-87855c0510edf9670c6b02dcdbf6c5b5.ctex"]
 
 [params]
 

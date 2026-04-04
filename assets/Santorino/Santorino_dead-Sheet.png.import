@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db6omq5n8pt7d"
-path="res://.godot/imported/backward_walk.png-9127152964002c684829832cc984f193.ctex"
+uid="uid://c62y7u603161s"
+path="res://.godot/imported/Santorino_dead-Sheet.png-d0a29acedfa8a221bf4c59879a482ec7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Santorino/backward_walk.png"
-dest_files=["res://.godot/imported/backward_walk.png-9127152964002c684829832cc984f193.ctex"]
+source_file="res://assets/Santorino/Santorino_dead-Sheet.png"
+dest_files=["res://.godot/imported/Santorino_dead-Sheet.png-d0a29acedfa8a221bf4c59879a482ec7.ctex"]
 
 [params]
 

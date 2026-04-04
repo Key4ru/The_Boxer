@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy5idqrb3pg0w"
-path="res://.godot/imported/heavy_punch.png-28817a9ee03d321058118410416a136a.ctex"
+uid="uid://d03sah2pfn3o"
+path="res://.godot/imported/J_stance_idle-Sheet.png-fee3b5582d83e29c9c062349dd134649.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/J/heavy_punch.png"
-dest_files=["res://.godot/imported/heavy_punch.png-28817a9ee03d321058118410416a136a.ctex"]
+source_file="res://assets/J/J_stance_idle-Sheet.png"
+dest_files=["res://.godot/imported/J_stance_idle-Sheet.png-fee3b5582d83e29c9c062349dd134649.ctex"]
 
 [params]
 

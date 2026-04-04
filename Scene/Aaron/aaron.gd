@@ -1,4 +1,4 @@
-class_name BasicTakeda
+class_name Aaron
 extends CharacterBody2D
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
@@ -70,9 +70,9 @@ func _ready() -> void:
 		player = get_tree().get_first_node_in_group("player")
 
 	if not player:
-		push_error("BasicTakeda: No player found in group 'player'!")
+		push_error("Aaron: No player found in group 'player'!")
 	else:
-		print("BasicTakeda: found player → ", player.name)
+		print("Aaron: found player → ", player.name)
 
 func _physics_process(delta: float) -> void:
 	# Freeze if dead
@@ -375,7 +375,7 @@ func take_damage(amount: int) -> void:
 		return
 	health -= amount
 	health = clamp(health, 0, HEALTH_MAX)
-	print("BasicTakeda: took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
+	print("Aaron: took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
 
 	current_state  = State.IDLE
 	current_phase  = Phase.RETREAT

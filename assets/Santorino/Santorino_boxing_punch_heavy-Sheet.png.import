@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0eii5tfqf8kg"
-path="res://.godot/imported/backward_walk.png-c4cd619d0e963f34b3510ebef09fd060.ctex"
+uid="uid://c27hxc73hrcxc"
+path="res://.godot/imported/Santorino_boxing_punch_heavy-Sheet.png-8244b49fb4ae90003c36d6d0337a6513.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/J/backward_walk.png"
-dest_files=["res://.godot/imported/backward_walk.png-c4cd619d0e963f34b3510ebef09fd060.ctex"]
+source_file="res://assets/Santorino/Santorino_boxing_punch_heavy-Sheet.png"
+dest_files=["res://.godot/imported/Santorino_boxing_punch_heavy-Sheet.png-8244b49fb4ae90003c36d6d0337a6513.ctex"]
 
 [params]
 

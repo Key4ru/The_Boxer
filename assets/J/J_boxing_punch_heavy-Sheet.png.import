@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhva5758xrdia"
-path="res://.godot/imported/light_punch.png-2eb0bbd3f35977f05044cd58d3869aea.ctex"
+uid="uid://bexu6cxwrmtgi"
+path="res://.godot/imported/J_boxing_punch_heavy-Sheet.png-e4e1d09e4bf9bd7c93b7d7729171610a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/J/light_punch.png"
-dest_files=["res://.godot/imported/light_punch.png-2eb0bbd3f35977f05044cd58d3869aea.ctex"]
+source_file="res://assets/J/J_boxing_punch_heavy-Sheet.png"
+dest_files=["res://.godot/imported/J_boxing_punch_heavy-Sheet.png-e4e1d09e4bf9bd7c93b7d7729171610a.ctex"]
 
 [params]
 

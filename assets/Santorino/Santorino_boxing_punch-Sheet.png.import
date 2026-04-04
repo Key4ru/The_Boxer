@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr8odhpw6aoaw"
-path="res://.godot/imported/punch.png-6cf98508f1fb5130d18b65896fdc470b.ctex"
+uid="uid://gjnh14wllq3d"
+path="res://.godot/imported/Santorino_boxing_punch-Sheet.png-95a144f8cfd7f7bec2440d3b25ca2c2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Santorino/punch.png"
-dest_files=["res://.godot/imported/punch.png-6cf98508f1fb5130d18b65896fdc470b.ctex"]
+source_file="res://assets/Santorino/Santorino_boxing_punch-Sheet.png"
+dest_files=["res://.godot/imported/Santorino_boxing_punch-Sheet.png-95a144f8cfd7f7bec2440d3b25ca2c2b.ctex"]
 
 [params]
 

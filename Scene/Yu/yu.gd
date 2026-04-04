@@ -5,11 +5,11 @@ extends CharacterBody2D
 @export var hit_effect_scene: PackedScene
 
 const SPEED = 175.0
-const LIGHT_PUNCH_DAMAGE = 2
-const HEAVY_PUNCH_DAMAGE = 4
+const LIGHT_PUNCH_DAMAGE = 10
+const HEAVY_PUNCH_DAMAGE = 20
 const HEALTH_MAX = 50
-const LIGHT_PUNCH_COOLDOWN = 3
-const HEAVY_PUNCH_COOLDOWN = 6
+const LIGHT_PUNCH_COOLDOWN = 0.6
+const HEAVY_PUNCH_COOLDOWN = 1.4
 
 var is_attacking: bool = false
 var is_dead: bool = false
@@ -36,7 +36,6 @@ func _physics_process(delta):
 	else:
 		handle_movement()
 		handle_attack_input()
-
 	move_and_slide()
 
 func handle_movement():
@@ -54,7 +53,6 @@ func handle_movement():
 func handle_attack_input():
 	if is_dead:
 		return
-
 	if Input.is_action_just_pressed("Attack_Light"):
 		if light_punch_timer <= 0.0:
 			start_attack("punch_light")
@@ -65,15 +63,12 @@ func handle_attack_input():
 func start_attack(attack_name: String):
 	if is_dead:
 		return
-
 	is_attacking = true
 	velocity.x = 0
-
 	if attack_name == "punch_light":
 		light_punch_timer = LIGHT_PUNCH_COOLDOWN
 	elif attack_name == "punch_heavy":
 		heavy_punch_timer = HEAVY_PUNCH_COOLDOWN
-
 	anim_player.play(attack_name)
 
 func _on_animation_finished(anim_name: String):
@@ -81,8 +76,7 @@ func _on_animation_finished(anim_name: String):
 		is_attacking = false
 		animated_sprite.play("idle")
 
-# HIT
-
+# --- HIT DETECTION ---
 func _on_light_punch_body_entered(body):
 	_handle_hit(body, $"Light Punch/CollisionShape2D".global_position, LIGHT_PUNCH_DAMAGE)
 
@@ -101,21 +95,24 @@ func spawn_hit_effect(hit_pos: Vector2):
 		get_tree().current_scene.add_child(effect)
 		effect.global_position = hit_pos
 
-# DAMAGE
-
+# --- DAMAGE & DEATH ---
 func take_damage(amount: int):
 	if is_dead:
 		return
-
 	health -= amount
 	health = clamp(health, 0, HEALTH_MAX)
-
+	print("Yu: took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
 	if health <= 0:
 		die()
 
 func die():
+	if is_dead:
+		return
 	is_dead = true
+	is_attacking = false
 	velocity = Vector2.ZERO
-
+	for shape in find_children("*", "CollisionShape2D"):
+		shape.set_deferred("disabled", true)
 	anim_player.stop()
 	animated_sprite.play("dead")
+	print("Yu: defeated!")

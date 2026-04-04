@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsnw2x2xu0gxv"
-path="res://.godot/imported/idle.png-56f49ffb181aa582961d3e72a5bf9109.ctex"
+uid="uid://42nyroes72gi"
+path="res://.godot/imported/Santorino_stance_idle-Sheet.png-cb00c4dbf0a469cf3db9c2ad061f553f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/J/idle.png"
-dest_files=["res://.godot/imported/idle.png-56f49ffb181aa582961d3e72a5bf9109.ctex"]
+source_file="res://assets/Santorino/Santorino_stance_idle-Sheet.png"
+dest_files=["res://.godot/imported/Santorino_stance_idle-Sheet.png-cb00c4dbf0a469cf3db9c2ad061f553f.ctex"]
 
 [params]
 
