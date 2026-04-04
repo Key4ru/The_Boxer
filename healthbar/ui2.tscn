@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://5lsatmeqod18" path="res://healthbar/ui2.gd" id="1_12vca"]
 [ext_resource type="Texture2D" uid="uid://heenwash13fy" path="res://healthbar/HealthBar-Sheet.png" id="2_hauoj"]
+[ext_resource type="Texture2D" uid="uid://b3g2o61wp53l6" path="res://assets/YU/Head Yu.png" id="2_mdm2h"]
+[ext_resource type="Texture2D" uid="uid://b21c5cq5jwlx2" path="res://others/Santorino_Head.png" id="4_drtje"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_63e54"]
 atlas = ExtResource("2_hauoj")
@@ -107,7 +109,7 @@ region = Rect2(1608, 0, 67, 12)
 atlas = ExtResource("2_hauoj")
 region = Rect2(1675, 0, 67, 12)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hauoj"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7liww"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -196,12 +198,24 @@ animations = [{
 [node name="YSHealth" type="CanvasLayer" unique_id=134092524]
 script = ExtResource("1_12vca")
 
-[node name="YuHealthBar" type="AnimatedSprite2D" parent="." unique_id=409656898]
-position = Vector2(231.99998, 95.99999)
+[node name="Yu Head" type="Sprite2D" parent="." unique_id=1104823425]
+z_index = 1
+position = Vector2(103.00001, 71)
 scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_hauoj")
+texture = ExtResource("2_mdm2h")
 
-[node name="SantorinoHealthBar" type="AnimatedSprite2D" parent="." unique_id=28589574]
-position = Vector2(1048, 96)
+[node name="YuHealthBar" type="AnimatedSprite2D" parent="." unique_id=1705070464]
+position = Vector2(295, 96.00001)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_7liww")
+
+[node name="Santorino Head" type="Sprite2D" parent="." unique_id=122631800]
+z_index = 1
+position = Vector2(1177.0001, 71.00001)
+scale = Vector2(5, 5)
+texture = ExtResource("4_drtje")
+
+[node name="SantorinoHealthBar" type="AnimatedSprite2D" parent="." unique_id=1330744439]
+position = Vector2(985.00006, 96.00001)
 scale = Vector2(-5, 5)
-sprite_frames = SubResource("SpriteFrames_hauoj")
+sprite_frames = SubResource("SpriteFrames_7liww")

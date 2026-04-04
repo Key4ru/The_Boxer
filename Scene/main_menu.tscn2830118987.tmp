@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://dkbbbh3ggp7ch"]
+
+[ext_resource type="Script" uid="uid://cqd2eo2xmip2i" path="res://Script/main_menu.gd" id="1_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://bvptwjvdgofa1" path="res://BG/MainMenu.png" id="2_jix8l"]
+[ext_resource type="Texture2D" uid="uid://dnqu06q4c5dry" path="res://buttons/Play.png" id="3_s2f1d"]
+[ext_resource type="Texture2D" uid="uid://b5kv1cr3rqrso" path="res://buttons/Play_Hover.png" id="4_ejkra"]
+[ext_resource type="AudioStream" uid="uid://cda36dm3hsids" path="res://assets/Sound/oi-oi-oe-oi-a-eye-eye.mp3" id="5_ejkra"]
+[ext_resource type="Texture2D" uid="uid://dt64odfro1rty" path="res://buttons/Tutorial.png" id="5_yok32"]
+[ext_resource type="Texture2D" uid="uid://dje3ky1t7l6ep" path="res://buttons/Tutorial_Hover.png" id="6_klvvj"]
+[ext_resource type="Texture2D" uid="uid://du2u4a36ntp8w" path="res://buttons/Quit.png" id="7_47k5r"]
+[ext_resource type="Texture2D" uid="uid://bbvxks36ympu8" path="res://buttons/Quit_Hover.png" id="8_hag5k"]
+[ext_resource type="AudioStream" uid="uid://8gdnfk6nthqx" path="res://assets/Sound/The Marias - No One Noticed ( Extended Version Instrumental ).mp3" id="8_yok32"]
+[ext_resource type="Texture2D" uid="uid://ene7tgpq71dp" path="res://others/Title.png" id="11_klvvj"]
+
+[node name="MainMenu" type="Node2D" unique_id=531519034]
+script = ExtResource("1_fu7sn")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=944105038]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground" unique_id=569906467]
+
+[node name="MainMenu" type="Sprite2D" parent="ParallaxBackground" unique_id=1867668829]
+position = Vector2(640, 360)
+scale = Vector2(3.2, 2.7883897)
+texture = ExtResource("2_jix8l")
+
+[node name="Control" type="Control" parent="." unique_id=240052]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="TextureButton" parent="Control" unique_id=243951755]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 400.0
+offset_right = 540.0
+offset_bottom = 472.0
+texture_normal = ExtResource("3_s2f1d")
+texture_hover = ExtResource("4_ejkra")
+stretch_mode = 0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/Start" unique_id=734761985]
+stream = ExtResource("5_ejkra")
+volume_db = -28.794
+
+[node name="Tutorial" type="TextureButton" parent="Control" unique_id=291838774]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 496.0
+offset_right = 540.0
+offset_bottom = 568.0
+texture_normal = ExtResource("5_yok32")
+texture_hover = ExtResource("6_klvvj")
+stretch_mode = 0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/Tutorial" unique_id=561668132]
+stream = ExtResource("8_yok32")
+volume_db = 12.818
+
+[node name="Quit" type="TextureButton" parent="Control" unique_id=320699886]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 592.0
+offset_right = 540.0
+offset_bottom = 664.0
+texture_normal = ExtResource("7_47k5r")
+texture_hover = ExtResource("8_hag5k")
+stretch_mode = 0
+
+[node name="Title" type="Sprite2D" parent="." unique_id=865678013]
+position = Vector2(400.00003, 224)
+scale = Vector2(3.0850003, 3.0850003)
+texture = ExtResource("11_klvvj")
+
+[connection signal="mouse_entered" from="Control/Start" to="." method="_on_start_mouse_entered"]
+[connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="Control/Tutorial" to="." method="_on_tutorial_mouse_entered"]
+[connection signal="pressed" from="Control/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Control/Quit" to="." method="_on_quit_pressed"]

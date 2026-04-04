@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 buses/default_bus_layout=""
 
+[autoload]
+
+SceneTransition="*uid://cp05cwaoypvx"
+KOScreen="*uid://b17kvq58gcij8"
+
 [display]
 
 window/size/viewport_width=1280

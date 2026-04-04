@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cp05cwaoypvx"]
+
+[ext_resource type="Script" uid="uid://p6wxsoxfhexw" path="res://Scene/Effect/scene_transition.gd" id="1_bmepa"]
+
+[node name="SceneTransition" type="CanvasLayer" unique_id=119865415]
+layer = 15
+script = ExtResource("1_bmepa")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2027340566]
+z_index = 8
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)

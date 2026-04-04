@@ -1,4 +1,4 @@
-class_name BasicTakeda
+class_name TakedaTakeda
 extends CharacterBody2D
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
@@ -11,8 +11,8 @@ extends CharacterBody2D
 
 const SPEED = 175.0
 const HEALTH_MAX = 50
-const LIGHT_PUNCH_DAMAGE = 10
-const HEAVY_PUNCH_DAMAGE = 20
+const LIGHT_PUNCH_DAMAGE = 3
+const HEAVY_PUNCH_DAMAGE = 6
 const LIGHT_PUNCH_COOLDOWN = 0.2
 const HEAVY_PUNCH_COOLDOWN = 0.7
 
@@ -53,6 +53,8 @@ var consecutive_misses: int = 0
 var locked_dir: float = 1.0
 var is_stepping_back: bool = false
 var stepback_timer: float = 0.0
+
+var defeated = false
 
 func _ready() -> void:
 	add_to_group("enemy")
@@ -409,3 +411,4 @@ func die() -> void:
 	anim_player.stop()
 	animated_sprite.play("dead")
 	print("DEBUG: Enemy defeated!")
+	KOScreen.trigger(true, "res://Scene/Levels/quest_1.tscn")

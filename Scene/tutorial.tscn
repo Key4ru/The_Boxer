@@ -63,7 +63,6 @@ scale = Vector2(0.06523437, 0.30382562)
 shape = SubResource("RectangleShape2D_aqehm")
 
 [node name="Yu" parent="." unique_id=930258384 instance=ExtResource("6_4cpsy")]
-z_index = 2
 position = Vector2(143, 468)
 
 [node name="Dummy" parent="." unique_id=2041271841 instance=ExtResource("7_qwkqa")]

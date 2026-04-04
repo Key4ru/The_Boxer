@@ -11,8 +11,8 @@ extends CharacterBody2D
 
 const SPEED = 175.0
 const HEALTH_MAX = 50
-const LIGHT_PUNCH_DAMAGE = 10
-const HEAVY_PUNCH_DAMAGE = 20
+const LIGHT_PUNCH_DAMAGE = 5
+const HEAVY_PUNCH_DAMAGE = 10
 const LIGHT_PUNCH_COOLDOWN = 0.2
 const HEAVY_PUNCH_COOLDOWN = 0.7
 
@@ -409,3 +409,4 @@ func die() -> void:
 	anim_player.stop()
 	animated_sprite.play("dead")
 	print("DEBUG: Enemy defeated!")
+	KOScreen.trigger(true, "res://Scene/Levels/quest_3.tscn")

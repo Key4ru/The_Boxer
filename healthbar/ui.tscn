@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://x4kcqkapa8eb" path="res://healthbar/ui.gd" id="1_sdr5x"]
 [ext_resource type="Texture2D" uid="uid://heenwash13fy" path="res://healthbar/HealthBar-Sheet.png" id="2_5ok24"]
+[ext_resource type="Texture2D" uid="uid://b3g2o61wp53l6" path="res://assets/YU/Head Yu.png" id="2_63e54"]
+[ext_resource type="Texture2D" uid="uid://c7yrimlebuw4a" path="res://others/Takeda_Head.png" id="4_63e54"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_63e54"]
 atlas = ExtResource("2_5ok24")
@@ -196,12 +198,24 @@ animations = [{
 [node name="YTHealth" type="CanvasLayer" unique_id=787495858]
 script = ExtResource("1_sdr5x")
 
+[node name="Yu Head" type="Sprite2D" parent="." unique_id=97387865]
+z_index = 1
+position = Vector2(103.00001, 71)
+scale = Vector2(5, 5)
+texture = ExtResource("2_63e54")
+
 [node name="YuHealthBar" type="AnimatedSprite2D" parent="." unique_id=192051238]
-position = Vector2(231.99998, 95.99999)
+position = Vector2(295, 96.00001)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_bixbr")
 
+[node name="Takeda Head" type="Sprite2D" parent="." unique_id=2031672213]
+z_index = 1
+position = Vector2(1177.0001, 71.00001)
+scale = Vector2(5, 5)
+texture = ExtResource("4_63e54")
+
 [node name="TakedaHealthBar" type="AnimatedSprite2D" parent="." unique_id=225046121]
-position = Vector2(1048, 96)
+position = Vector2(985.00006, 96.00001)
 scale = Vector2(-5, 5)
 sprite_frames = SubResource("SpriteFrames_bixbr")

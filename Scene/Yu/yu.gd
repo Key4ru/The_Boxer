@@ -5,11 +5,11 @@ extends CharacterBody2D
 @export var hit_effect_scene: PackedScene
 
 const SPEED = 175.0
-const LIGHT_PUNCH_DAMAGE = 10
-const HEAVY_PUNCH_DAMAGE = 20
+const LIGHT_PUNCH_DAMAGE = 2
+const HEAVY_PUNCH_DAMAGE = 4
 const HEALTH_MAX = 50
-const LIGHT_PUNCH_COOLDOWN = 0.6
-const HEAVY_PUNCH_COOLDOWN = 1.4
+const LIGHT_PUNCH_COOLDOWN = 3
+const HEAVY_PUNCH_COOLDOWN = 6
 
 var is_attacking: bool = false
 var is_dead: bool = false
@@ -116,3 +116,4 @@ func die():
 	anim_player.stop()
 	animated_sprite.play("dead")
 	print("Yu: defeated!")
+	KOScreen.trigger(true, "res://Scene/Levels/level_select.tscn")

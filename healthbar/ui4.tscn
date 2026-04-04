@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://gq7p26x3wg0e" path="res://healthbar/ui4.gd" id="1_80bsf"]
 [ext_resource type="Texture2D" uid="uid://heenwash13fy" path="res://healthbar/HealthBar-Sheet.png" id="1_a5bsg"]
+[ext_resource type="Texture2D" uid="uid://b3g2o61wp53l6" path="res://assets/YU/Head Yu.png" id="2_ei5jc"]
+[ext_resource type="Texture2D" uid="uid://c8mpajmo52qya" path="res://others/J_Head.png" id="4_yjliu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_63e54"]
 atlas = ExtResource("1_a5bsg")
@@ -107,7 +109,7 @@ region = Rect2(1608, 0, 67, 12)
 atlas = ExtResource("1_a5bsg")
 region = Rect2(1675, 0, 67, 12)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_80bsf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdoeg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -196,12 +198,24 @@ animations = [{
 [node name="YJHealth" type="CanvasLayer" unique_id=885893485]
 script = ExtResource("1_80bsf")
 
-[node name="YuHealthBar" type="AnimatedSprite2D" parent="." unique_id=1411668723]
-position = Vector2(231.99998, 95.99999)
+[node name="Yu Head" type="Sprite2D" parent="." unique_id=119507012]
+z_index = 1
+position = Vector2(103.00001, 71)
 scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_80bsf")
+texture = ExtResource("2_ei5jc")
 
-[node name="JHealthBar" type="AnimatedSprite2D" parent="." unique_id=1732948869]
-position = Vector2(1048, 96)
+[node name="YuHealthBar" type="AnimatedSprite2D" parent="." unique_id=252068515]
+position = Vector2(295, 96.00001)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_sdoeg")
+
+[node name="J Head" type="Sprite2D" parent="." unique_id=274394497]
+z_index = 1
+position = Vector2(1177.0001, 71.00001)
+scale = Vector2(5, 5)
+texture = ExtResource("4_yjliu")
+
+[node name="JHealthBar" type="AnimatedSprite2D" parent="." unique_id=1803764779]
+position = Vector2(985.00006, 96.00001)
 scale = Vector2(-5, 5)
-sprite_frames = SubResource("SpriteFrames_80bsf")
+sprite_frames = SubResource("SpriteFrames_sdoeg")

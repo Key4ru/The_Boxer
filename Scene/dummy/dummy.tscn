@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dbumi8yql8m2i"]
 
-[ext_resource type="Script" uid="uid://bdx7n5oe5fu0y" path="res://Script/dummy/dummy.gd" id="1_g1ln5"]
+[ext_resource type="Script" uid="uid://bdx7n5oe5fu0y" path="res://Scene/dummy/dummy.gd" id="1_g1ln5"]
 [ext_resource type="Texture2D" uid="uid://buhufyhyh5wx0" path="res://assets/Dummy/dummy-Sheet.png" id="1_hli4y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3xwb"]

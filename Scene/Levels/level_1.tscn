@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://gg5p1pbixo5h"]
 
 [ext_resource type="Texture2D" uid="uid://bruyp7mkdkra6" path="res://BG/Ring 1.png" id="1_8twhv"]
+[ext_resource type="Script" uid="uid://dycq1ywxalodc" path="res://Scene/Levels/level_1.gd" id="1_obhsb"]
 [ext_resource type="PackedScene" uid="uid://nyt0y2jy4117" path="res://Scene/Yu/yu.tscn" id="2_sxagu"]
 [ext_resource type="PackedScene" uid="uid://dwta2nxucq1kl" path="res://Scene/Takeda/takeda.tscn" id="3_cfqvl"]
 [ext_resource type="PackedScene" uid="uid://bkey0ugncnhcs" path="res://healthbar/ui.tscn" id="4_pporg"]
@@ -15,6 +16,7 @@ size = Vector2(1935.7393, 1340.349)
 size = Vector2(1885.5093, 1372.498)
 
 [node name="Level1" type="Node2D" unique_id=1989593043]
+script = ExtResource("1_obhsb")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1995349347]
 
