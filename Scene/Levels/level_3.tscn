@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://clorq7opuuc4q"]
 
 [ext_resource type="Texture2D" uid="uid://c2fw0ul7fhcfy" path="res://BG/Ring 2.png" id="1_5pqjk"]
+[ext_resource type="AudioStream" uid="uid://chpnxubjxwrk4" path="res://assets/Sound/bell.mp3" id="1_7tqhq"]
 [ext_resource type="PackedScene" uid="uid://nyt0y2jy4117" path="res://Scene/Yu/yu.tscn" id="2_dy8xx"]
+[ext_resource type="AudioStream" uid="uid://ddtlguv12oooj" path="res://assets/Sound/level music.mp3" id="2_nsgdx"]
 [ext_resource type="PackedScene" uid="uid://bl4awajkn8eqg" path="res://Scene/Aaron/aaron.tscn" id="3_vf5vf"]
 [ext_resource type="PackedScene" uid="uid://c8tegbstbdo5c" path="res://Scene/Effect/effect.tscn" id="4_hv3rh"]
 [ext_resource type="PackedScene" uid="uid://bc1lgd30kwjch" path="res://healthbar/ui3.tscn" id="4_vf5vf"]
@@ -16,6 +18,16 @@ size = Vector2(1935.7393, 1340.349)
 size = Vector2(1885.5093, 1372.498)
 
 [node name="level_3" type="Node2D" unique_id=1925787659]
+
+[node name="bell" type="AudioStreamPlayer" parent="." unique_id=80129582]
+stream = ExtResource("1_7tqhq")
+volume_db = -15.846
+autoplay = true
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=475888115]
+stream = ExtResource("2_nsgdx")
+volume_db = -26.381
+autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1454395236]
 

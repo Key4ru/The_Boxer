@@ -5,9 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://c8tegbstbdo5c" path="res://Scene/Effect/effect.tscn" id="2_kyto7"]
 [ext_resource type="Texture2D" uid="uid://qws5hqbw7my8" path="res://assets/Takeda/backward walk stance.png" id="2_yovkc"]
 [ext_resource type="Texture2D" uid="uid://e566itwt6sts" path="res://assets/Takeda/takeda_dead-Sheet.png" id="3_kyto7"]
+[ext_resource type="AudioStream" uid="uid://c8yu70cpurlwa" path="res://assets/Sound/Whoosh.mp3" id="3_lr75b"]
 [ext_resource type="Texture2D" uid="uid://bjnmej20h6xrm" path="res://assets/Takeda/heavy_punch.png" id="3_qewtd"]
+[ext_resource type="AudioStream" uid="uid://cqo1js3ui27ab" path="res://assets/Sound/LightPunch.wav" id="4_3kckb"]
 [ext_resource type="Texture2D" uid="uid://cvkr0n4c8wkpf" path="res://assets/Takeda/stance idle.png" id="4_kyto7"]
 [ext_resource type="Texture2D" uid="uid://cl4wooe8pdl7y" path="res://assets/Takeda/Takeda_stance_punch-Sheet.png" id="5_sfrqv"]
+[ext_resource type="AudioStream" uid="uid://ce5656tq2wbsr" path="res://assets/Sound/HeavyPunch.wav" id="5_wlyld"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vl18g"]
 atlas = ExtResource("1_lht0r")
@@ -503,6 +506,17 @@ size = Vector2(96, 260)
 [node name="Takeda" type="CharacterBody2D" unique_id=1097823246]
 script = ExtResource("1_yovkc")
 hit_effect_scene = ExtResource("2_kyto7")
+
+[node name="SoundWhoosh" type="AudioStreamPlayer2D" parent="." unique_id=33796560]
+stream = ExtResource("3_lr75b")
+
+[node name="SoundHitLight" type="AudioStreamPlayer2D" parent="." unique_id=2056708977]
+stream = ExtResource("4_3kckb")
+
+[node name="SoundHitHeavy" type="AudioStreamPlayer2D" parent="." unique_id=2111244293]
+stream = ExtResource("5_wlyld")
+
+[node name="SoundFootstep" type="AudioStreamPlayer2D" parent="." unique_id=326080417]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=274849493]
 scale = Vector2(7.125, 7.125)

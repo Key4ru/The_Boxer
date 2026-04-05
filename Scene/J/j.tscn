@@ -4,8 +4,11 @@
 [ext_resource type="Script" uid="uid://dqud6wgvo8y0p" path="res://Scene/J/j.gd" id="1_wup1q"]
 [ext_resource type="Texture2D" uid="uid://cmc30wx0j7rxu" path="res://assets/J/J_dead-Sheet.png" id="2_wup1q"]
 [ext_resource type="PackedScene" uid="uid://c8tegbstbdo5c" path="res://Scene/Effect/effect.tscn" id="2_ygclk"]
+[ext_resource type="AudioStream" uid="uid://c8yu70cpurlwa" path="res://assets/Sound/Whoosh.mp3" id="3_1p5uh"]
 [ext_resource type="Texture2D" uid="uid://n2wl3tnt18dh" path="res://assets/J/J_stance_walk2-Sheet.png" id="3_ygclk"]
+[ext_resource type="AudioStream" uid="uid://cqo1js3ui27ab" path="res://assets/Sound/LightPunch.wav" id="4_0w0nn"]
 [ext_resource type="Texture2D" uid="uid://bexu6cxwrmtgi" path="res://assets/J/J_boxing_punch_heavy-Sheet.png" id="4_1dyci"]
+[ext_resource type="AudioStream" uid="uid://ce5656tq2wbsr" path="res://assets/Sound/HeavyPunch.wav" id="5_1mf72"]
 [ext_resource type="Texture2D" uid="uid://d03sah2pfn3o" path="res://assets/J/J_stance_idle-Sheet.png" id="5_8dsn8"]
 [ext_resource type="Texture2D" uid="uid://cnf45pyr5kem3" path="res://assets/J/J_boxing_punch-Sheet.png" id="6_1p5uh"]
 
@@ -503,6 +506,17 @@ size = Vector2(96, 260)
 [node name="J" type="CharacterBody2D" unique_id=1887258826]
 script = ExtResource("1_wup1q")
 hit_effect_scene = ExtResource("2_ygclk")
+
+[node name="SoundWhoosh" type="AudioStreamPlayer2D" parent="." unique_id=1754835210]
+stream = ExtResource("3_1p5uh")
+
+[node name="SoundHitLight" type="AudioStreamPlayer2D" parent="." unique_id=860870252]
+stream = ExtResource("4_0w0nn")
+
+[node name="SoundHitHeavy" type="AudioStreamPlayer2D" parent="." unique_id=1019358662]
+stream = ExtResource("5_1mf72")
+
+[node name="SoundFootstep" type="AudioStreamPlayer2D" parent="." unique_id=97235085]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=392000325]
 scale = Vector2(7.125, 7.125)

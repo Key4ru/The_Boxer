@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://dnqu06q4c5dry" path="res://buttons/Play.png" id="3_s2f1d"]
 [ext_resource type="FontFile" uid="uid://dj21ayp1lw04h" path="res://others/rubber-biscuit.bold.ttf" id="4_47k5r"]
 [ext_resource type="Texture2D" uid="uid://b5kv1cr3rqrso" path="res://buttons/Play_Hover.png" id="4_ejkra"]
-[ext_resource type="AudioStream" uid="uid://cda36dm3hsids" path="res://assets/Sound/oi-oi-oe-oi-a-eye-eye.mp3" id="5_ejkra"]
 [ext_resource type="Texture2D" uid="uid://dt64odfro1rty" path="res://buttons/Tutorial.png" id="5_yok32"]
 [ext_resource type="Texture2D" uid="uid://dje3ky1t7l6ep" path="res://buttons/Tutorial_Hover.png" id="6_klvvj"]
 [ext_resource type="Texture2D" uid="uid://du2u4a36ntp8w" path="res://buttons/Quit.png" id="7_47k5r"]
 [ext_resource type="Texture2D" uid="uid://bbvxks36ympu8" path="res://buttons/Quit_Hover.png" id="8_hag5k"]
-[ext_resource type="AudioStream" uid="uid://8gdnfk6nthqx" path="res://assets/Sound/The Marias - No One Noticed ( Extended Version Instrumental ).mp3" id="8_yok32"]
+[ext_resource type="AudioStream" uid="uid://c0vwu74bh7hl1" path="res://assets/Sound/button_hover.mp3" id="11_47k5r"]
 [ext_resource type="Texture2D" uid="uid://ene7tgpq71dp" path="res://others/Title.png" id="11_klvvj"]
+[ext_resource type="AudioStream" uid="uid://djmd0rruetqi5" path="res://assets/Sound/button_pressed.mp3" id="12_hag5k"]
 
 [node name="MainMenu" type="Node2D" unique_id=531519034]
 script = ExtResource("1_fu7sn")
@@ -66,10 +66,6 @@ texture_normal = ExtResource("3_s2f1d")
 texture_hover = ExtResource("4_ejkra")
 stretch_mode = 0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/Start" unique_id=734761985]
-stream = ExtResource("5_ejkra")
-volume_db = -28.794
-
 [node name="Tutorial" type="TextureButton" parent="Control" unique_id=291838774]
 layout_mode = 0
 offset_left = 261.0
@@ -80,10 +76,6 @@ texture_normal = ExtResource("5_yok32")
 texture_hover = ExtResource("6_klvvj")
 stretch_mode = 0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/Tutorial" unique_id=561668132]
-stream = ExtResource("8_yok32")
-volume_db = 12.818
-
 [node name="Quit" type="TextureButton" parent="Control" unique_id=320699886]
 layout_mode = 0
 offset_left = 261.0
@@ -93,6 +85,14 @@ offset_bottom = 664.0
 texture_normal = ExtResource("7_47k5r")
 texture_hover = ExtResource("8_hag5k")
 stretch_mode = 0
+
+[node name="SoundHover" type="AudioStreamPlayer" parent="Control" unique_id=2110619429]
+stream = ExtResource("11_47k5r")
+volume_db = 6.381
+
+[node name="SoundPress" type="AudioStreamPlayer" parent="Control" unique_id=770339708]
+stream = ExtResource("12_hag5k")
+volume_db = -8.549
 
 [connection signal="mouse_entered" from="Control/Start" to="." method="_on_start_mouse_entered"]
 [connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]

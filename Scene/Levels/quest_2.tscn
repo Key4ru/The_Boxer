@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dr0pscuain5vj"]
 
+[ext_resource type="AudioStream" uid="uid://hsiutga0cqxa" path="res://assets/Sound/chill.mp3" id="1_8yyfh"]
 [ext_resource type="Texture2D" uid="uid://dihuvqte04gcy" path="res://BG/Gym_Background.png" id="1_fv05k"]
 [ext_resource type="Texture2D" uid="uid://cotu1kte2m0do" path="res://others/Quest.png" id="2_pwesn"]
 [ext_resource type="Texture2D" uid="uid://dxggtcmnv8q57" path="res://others/CoachK_head.png" id="3_8yyfh"]
 [ext_resource type="FontFile" uid="uid://vumxiophq1ih" path="res://others/minecraft-five.otf" id="4_qyych"]
-[ext_resource type="PackedScene" uid="uid://nyt0y2jy4117" path="res://Scene/Yu/yu.tscn" id="5_odm25"]
+[ext_resource type="PackedScene" uid="uid://dkvtslmnibjvo" path="res://Scene/Yu/yu_2.tscn" id="6_fv05k"]
 [ext_resource type="PackedScene" uid="uid://cmkh23mwur371" path="res://Scene/dummy/dummy_3.tscn" id="6_llaes"]
+[ext_resource type="PackedScene" uid="uid://c8tegbstbdo5c" path="res://Scene/Effect/effect.tscn" id="7_pwesn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82t0k"]
 size = Vector2(1286.5, 80)
@@ -17,6 +19,11 @@ size = Vector2(1935.7393, 1340.349)
 size = Vector2(1885.5093, 1372.498)
 
 [node name="Quest2" type="Node2D" unique_id=296130479]
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1161263875]
+stream = ExtResource("1_8yyfh")
+volume_db = -24.976
+autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=766364706]
 
@@ -62,6 +69,7 @@ theme_override_colors/font_color = Color(0.038651858, 0.004736936, 0, 1)
 theme_override_fonts/font = ExtResource("4_qyych")
 theme_override_font_sizes/font_size = 17
 text = "COACH K"
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="CanvasLayer" unique_id=545933226]
 offset_left = 227.0
@@ -73,6 +81,7 @@ theme_override_fonts/font = ExtResource("4_qyych")
 theme_override_font_sizes/font_size = 20
 text = "PUNCH THE"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Label3" type="Label" parent="CanvasLayer" unique_id=933959642]
 offset_left = 268.0
@@ -84,6 +93,7 @@ theme_override_fonts/font = ExtResource("4_qyych")
 theme_override_font_sizes/font_size = 20
 text = "DUMMY"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Label4" type="Label" parent="CanvasLayer" unique_id=1500727272]
 offset_left = 228.00002
@@ -95,6 +105,7 @@ theme_override_fonts/font = ExtResource("4_qyych")
 theme_override_font_sizes/font_size = 20
 text = "TRAINING:"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="HitLabel" type="Label" parent="CanvasLayer" unique_id=80049989]
 offset_left = 280.00003
@@ -106,9 +117,11 @@ theme_override_fonts/font = ExtResource("4_qyych")
 theme_override_font_sizes/font_size = 20
 text = "0/20"
 horizontal_alignment = 1
-
-[node name="Yu" parent="." unique_id=930258384 instance=ExtResource("5_odm25")]
-position = Vector2(176, 468)
+metadata/_edit_use_anchors_ = true
 
 [node name="Dummy3" parent="." unique_id=1450852670 instance=ExtResource("6_llaes")]
 position = Vector2(960, 468)
+
+[node name="Yu2" parent="." unique_id=895912741 instance=ExtResource("6_fv05k")]
+position = Vector2(176, 468)
+hit_effect_scene = ExtResource("7_pwesn")

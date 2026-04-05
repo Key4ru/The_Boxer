@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dyo65j8b4hrn6" path="res://Scene/Effect/ko_screen.gd" id="1_bqwxf"]
 [ext_resource type="Texture2D" uid="uid://cgq36kicfhgja" path="res://others/KO-Sheet.png" id="2_tblg8"]
+[ext_resource type="AudioStream" uid="uid://be3hjtxxlh1r3" path="res://assets/Sound/knockout.mp3" id="3_tblg8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqds3"]
 atlas = ExtResource("2_tblg8")
@@ -169,3 +170,7 @@ sprite_frames = SubResource("SpriteFrames_b3x5c")
 animation = &"ko"
 frame = 20
 frame_progress = 1.0
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=974362552]
+stream = ExtResource("3_tblg8")
+volume_db = -13.012

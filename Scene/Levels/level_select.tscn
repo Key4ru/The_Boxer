@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bruyp7mkdkra6" path="res://BG/Ring 1.png" id="1_il3u1"]
 [ext_resource type="Script" uid="uid://vhk5wjhtdku1" path="res://Scene/Levels/level_select.gd" id="1_vomi7"]
+[ext_resource type="AudioStream" uid="uid://d3g6ep1bm7gna" path="res://assets/Sound/Hajime no Ippo OST 11 - TUMBLING DICE HQ.mp3" id="2_c3ehg"]
 [ext_resource type="Texture2D" uid="uid://cc4cdsdcbvwf" path="res://buttons/Left.png" id="3_8qr5y"]
 [ext_resource type="FontFile" uid="uid://vumxiophq1ih" path="res://others/minecraft-five.otf" id="3_wevku"]
 [ext_resource type="Texture2D" uid="uid://c5kch1gjw2h68" path="res://buttons/Left_Hover.png" id="4_05pd3"]
@@ -11,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://kg1w01qpyce" path="res://buttons/Right_Hover.png" id="6_rtb5x"]
 [ext_resource type="Texture2D" uid="uid://cbfq3sc5d5gg1" path="res://buttons/Back.png" id="10_8xv63"]
 [ext_resource type="Texture2D" uid="uid://4qsjvt8gw55n" path="res://buttons/Back_Hover.png" id="11_2r8wh"]
+[ext_resource type="Texture2D" uid="uid://cvejek6qnoi0j" path="res://others/Lock.png" id="12_2r8wh"]
+[ext_resource type="AudioStream" uid="uid://c0vwu74bh7hl1" path="res://assets/Sound/button_hover.mp3" id="13_ofg8r"]
+[ext_resource type="AudioStream" uid="uid://djmd0rruetqi5" path="res://assets/Sound/button_pressed.mp3" id="14_c3ehg"]
 
 [node name="LevelSelect" type="Control" unique_id=1862446214]
 layout_mode = 3
@@ -18,6 +22,11 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_vomi7")
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=154570474]
+stream = ExtResource("2_c3ehg")
+volume_db = -31.393
+autoplay = true
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=69527641]
 layout_mode = 0
@@ -55,6 +64,33 @@ texture_normal = ExtResource("5_hhsoe")
 texture_hover = ExtResource("6_rtb5x")
 stretch_mode = 0
 
+[node name="BtnPlay" type="TextureButton" parent="." unique_id=875152607]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 450.0
+offset_top = 504.0
+offset_right = 791.0
+offset_bottom = 592.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_apu6u")
+texture_hover = ExtResource("5_bv7n5")
+stretch_mode = 0
+
+[node name="Back" type="TextureButton" parent="." unique_id=1718794062]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 202.25
+offset_bottom = 70.0
+texture_normal = ExtResource("10_8xv63")
+texture_hover = ExtResource("11_2r8wh")
+stretch_mode = 0
+
 [node name="EnemyName" type="Label" parent="." unique_id=8620143]
 layout_mode = 1
 anchors_preset = 8
@@ -85,23 +121,6 @@ theme_override_font_sizes/font_size = 22
 text = "LEVEL 1"
 horizontal_alignment = 1
 
-[node name="BtnPlay" type="TextureButton" parent="." unique_id=875152607]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 450.0
-offset_top = 504.0
-offset_right = 791.0
-offset_bottom = 592.0
-grow_horizontal = 2
-grow_vertical = 0
-texture_normal = ExtResource("4_apu6u")
-texture_hover = ExtResource("5_bv7n5")
-stretch_mode = 0
-
 [node name="EnemyPortrait" type="TextureRect" parent="." unique_id=2142463241]
 layout_mode = 0
 offset_left = 528.0
@@ -109,14 +128,20 @@ offset_top = 40.0
 offset_right = 752.0
 offset_bottom = 264.0
 
-[node name="Back" type="TextureButton" parent="." unique_id=1718794062]
+[node name="LockIcon" type="TextureRect" parent="." unique_id=2029639020]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 202.25
-offset_bottom = 70.0
-texture_normal = ExtResource("10_8xv63")
-texture_hover = ExtResource("11_2r8wh")
-stretch_mode = 0
+offset_left = 584.0
+offset_top = 516.0
+offset_right = 696.0
+offset_bottom = 651.579
+texture = ExtResource("12_2r8wh")
+
+[node name="SoundHover" type="AudioStreamPlayer" parent="." unique_id=835771054]
+stream = ExtResource("13_ofg8r")
+volume_db = 6.381
+
+[node name="SoundPress" type="AudioStreamPlayer" parent="." unique_id=443762954]
+stream = ExtResource("14_c3ehg")
+volume_db = -8.549
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

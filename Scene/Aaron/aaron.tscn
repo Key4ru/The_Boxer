@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://bl4awajkn8eqg"]
 
 [ext_resource type="Script" uid="uid://rpvei810nxhx" path="res://Scene/Aaron/aaron.gd" id="1_ul8vb"]
+[ext_resource type="AudioStream" uid="uid://c8yu70cpurlwa" path="res://assets/Sound/Whoosh.mp3" id="2_0g3po"]
 [ext_resource type="Texture2D" uid="uid://bm4r6ej13uej" path="res://assets/Aaron/backward_walk.png" id="2_vqrc0"]
+[ext_resource type="AudioStream" uid="uid://cqo1js3ui27ab" path="res://assets/Sound/LightPunch.wav" id="3_myo1a"]
 [ext_resource type="Texture2D" uid="uid://oa8dihhbq8bt" path="res://assets/Aaron/Aaron_dead-Sheet.png" id="3_ul8vb"]
 [ext_resource type="Texture2D" uid="uid://djfpvsbhtirn" path="res://assets/Aaron/forward_walk.png" id="4_0g3po"]
+[ext_resource type="AudioStream" uid="uid://ce5656tq2wbsr" path="res://assets/Sound/HeavyPunch.wav" id="4_bskg5"]
 [ext_resource type="Texture2D" uid="uid://b17nd72exllp2" path="res://assets/Aaron/heavy_punch.png" id="5_myo1a"]
 [ext_resource type="Texture2D" uid="uid://dtx10eindx50l" path="res://assets/Aaron/idle.png" id="6_bskg5"]
 [ext_resource type="Texture2D" uid="uid://dlml5rvhpeqf5" path="res://assets/Aaron/light_punch.png" id="7_vifov"]
@@ -501,6 +504,17 @@ size = Vector2(96, 260)
 
 [node name="Aaron" type="CharacterBody2D" unique_id=1727967856]
 script = ExtResource("1_ul8vb")
+
+[node name="SoundWhoosh" type="AudioStreamPlayer2D" parent="." unique_id=1175825813]
+stream = ExtResource("2_0g3po")
+
+[node name="SoundHitLight" type="AudioStreamPlayer2D" parent="." unique_id=1383061328]
+stream = ExtResource("3_myo1a")
+
+[node name="SoundHitHeavy" type="AudioStreamPlayer2D" parent="." unique_id=817036094]
+stream = ExtResource("4_bskg5")
+
+[node name="SoundFootstep" type="AudioStreamPlayer2D" parent="." unique_id=293238459]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2009516324]
 scale = Vector2(7.125, 7.125)

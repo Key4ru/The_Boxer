@@ -3,8 +3,11 @@
 [ext_resource type="Script" uid="uid://dinhuy0c7ht3r" path="res://Scene/Santorino/santorino.gd" id="1_an5dd"]
 [ext_resource type="Texture2D" uid="uid://2is1xt5webcr" path="res://assets/Santorino/backward walk.png" id="2_d4t8c"]
 [ext_resource type="PackedScene" uid="uid://c8tegbstbdo5c" path="res://Scene/Effect/effect.tscn" id="2_lcebc"]
+[ext_resource type="AudioStream" uid="uid://c8yu70cpurlwa" path="res://assets/Sound/Whoosh.mp3" id="3_sjjoy"]
 [ext_resource type="Texture2D" uid="uid://c62y7u603161s" path="res://assets/Santorino/Santorino_dead-Sheet.png" id="4_d4t8c"]
+[ext_resource type="AudioStream" uid="uid://cqo1js3ui27ab" path="res://assets/Sound/LightPunch.wav" id="4_lbvej"]
 [ext_resource type="Texture2D" uid="uid://d4c050ugsqkly" path="res://assets/Santorino/forward walk.png" id="4_uoc3q"]
+[ext_resource type="AudioStream" uid="uid://ce5656tq2wbsr" path="res://assets/Sound/HeavyPunch.wav" id="5_1f8v0"]
 [ext_resource type="Texture2D" uid="uid://c27hxc73hrcxc" path="res://assets/Santorino/Santorino_boxing_punch_heavy-Sheet.png" id="5_sjjoy"]
 [ext_resource type="Texture2D" uid="uid://42nyroes72gi" path="res://assets/Santorino/Santorino_stance_idle-Sheet.png" id="6_lbvej"]
 [ext_resource type="Texture2D" uid="uid://gjnh14wllq3d" path="res://assets/Santorino/Santorino_boxing_punch-Sheet.png" id="7_1f8v0"]
@@ -503,6 +506,17 @@ size = Vector2(96, 260)
 [node name="Santorino" type="CharacterBody2D" unique_id=1357182954]
 script = ExtResource("1_an5dd")
 hit_effect_scene = ExtResource("2_lcebc")
+
+[node name="SoundWhoosh" type="AudioStreamPlayer2D" parent="." unique_id=131509642]
+stream = ExtResource("3_sjjoy")
+
+[node name="SoundHitLight" type="AudioStreamPlayer2D" parent="." unique_id=354270217]
+stream = ExtResource("4_lbvej")
+
+[node name="SoundHitHeavy" type="AudioStreamPlayer2D" parent="." unique_id=896925228]
+stream = ExtResource("5_1f8v0")
+
+[node name="SoundFootstep" type="AudioStreamPlayer2D" parent="." unique_id=205760316]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2034174038]
 scale = Vector2(7.125, 7.125)

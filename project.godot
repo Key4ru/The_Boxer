@@ -23,6 +23,7 @@ buses/default_bus_layout=""
 
 SceneTransition="*uid://cp05cwaoypvx"
 KOScreen="*uid://b17kvq58gcij8"
+GameProgress="*uid://bsosopni1r0ms"
 
 [display]
 

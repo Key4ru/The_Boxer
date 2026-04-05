@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d8og2kl7s5yw"]
+
+[ext_resource type="Script" uid="uid://bsosopni1r0ms" path="res://Scene/Effect/game_progress.gd" id="1_5v4g3"]
+
+[node name="GameProgress" type="Node2D" unique_id=1489953623]
+script = ExtResource("1_5v4g3")

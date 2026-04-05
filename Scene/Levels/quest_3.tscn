@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://cu2cmjklnr7ot"]
 
 [ext_resource type="Texture2D" uid="uid://dihuvqte04gcy" path="res://BG/Gym_Background.png" id="1_r6yjo"]
+[ext_resource type="AudioStream" uid="uid://hsiutga0cqxa" path="res://assets/Sound/chill.mp3" id="1_txyem"]
 [ext_resource type="Texture2D" uid="uid://cotu1kte2m0do" path="res://others/Quest.png" id="2_ksxwy"]
 [ext_resource type="Texture2D" uid="uid://dxggtcmnv8q57" path="res://others/CoachK_head.png" id="3_txyem"]
 [ext_resource type="FontFile" uid="uid://vumxiophq1ih" path="res://others/minecraft-five.otf" id="4_2on7k"]
-[ext_resource type="PackedScene" uid="uid://nyt0y2jy4117" path="res://Scene/Yu/yu.tscn" id="5_urisj"]
+[ext_resource type="PackedScene" uid="uid://dkvtslmnibjvo" path="res://Scene/Yu/yu_2.tscn" id="6_ksxwy"]
 [ext_resource type="PackedScene" uid="uid://b6j84gdrgw260" path="res://Scene/dummy/dummy_4.tscn" id="6_x1mx0"]
+[ext_resource type="PackedScene" uid="uid://c8tegbstbdo5c" path="res://Scene/Effect/effect.tscn" id="7_txyem"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4b8k5"]
 size = Vector2(1286.5, 80)
@@ -17,6 +19,11 @@ size = Vector2(1935.7393, 1340.349)
 size = Vector2(1885.5093, 1372.498)
 
 [node name="Quest3" type="Node2D" unique_id=575984029]
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1622236919]
+stream = ExtResource("1_txyem")
+volume_db = -24.976
+autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=163128356]
 
@@ -41,74 +48,80 @@ position = Vector2(-64, 503.5)
 scale = Vector2(0.06523437, 0.30382562)
 shape = SubResource("RectangleShape2D_xoaq1")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1481566255]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1157681287]
 
-[node name="Dialog" type="Sprite2D" parent="CanvasLayer" unique_id=1916778096]
+[node name="Dialog" type="Sprite2D" parent="CanvasLayer" unique_id=2025072009]
 position = Vector2(234.52498, 135.625)
 scale = Vector2(7.3357134, 7.3357143)
 texture = ExtResource("2_ksxwy")
 
-[node name="CoachKHead" type="Sprite2D" parent="CanvasLayer" unique_id=1771678030]
+[node name="CoachKHead" type="Sprite2D" parent="CanvasLayer" unique_id=508901238]
 position = Vector2(154, 112.00001)
 scale = Vector2(4.1363635, 4.1363635)
 texture = ExtResource("3_txyem")
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=1420850025]
-offset_left = 522.13635
-offset_top = 893.7727
-offset_right = 653.13635
-offset_bottom = 925.7727
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=2031347228]
+offset_left = 89.00001
+offset_top = 189.0
+offset_right = 220.0
+offset_bottom = 221.0
 theme_override_colors/font_color = Color(0.038651858, 0.004736936, 0, 1)
 theme_override_fonts/font = ExtResource("4_2on7k")
 theme_override_font_sizes/font_size = 17
 text = "COACH K"
+metadata/_edit_use_anchors_ = true
 
-[node name="Label2" type="Label" parent="CanvasLayer" unique_id=2004569093]
-offset_left = 1092.9546
-offset_top = 525.63635
-offset_right = 1294.9546
-offset_bottom = 553.63635
+[node name="Label2" type="Label" parent="CanvasLayer" unique_id=596472463]
+offset_left = 227.0
+offset_top = 99.99999
+offset_right = 429.0
+offset_bottom = 127.99999
 theme_override_colors/font_color = Color(0.038651858, 0.004736936, 0, 1)
 theme_override_fonts/font = ExtResource("4_2on7k")
 theme_override_font_sizes/font_size = 20
 text = "PUNCH THE"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Label3" type="Label" parent="CanvasLayer" unique_id=1675560703]
-offset_left = 1262.5454
-offset_top = 707.63635
-offset_right = 1382.5454
-offset_bottom = 735.63635
+[node name="Label3" type="Label" parent="CanvasLayer" unique_id=640599144]
+offset_left = 268.0
+offset_top = 144.0
+offset_right = 388.0
+offset_bottom = 172.0
 theme_override_colors/font_color = Color(0.038651858, 0.004736936, 0, 1)
 theme_override_fonts/font = ExtResource("4_2on7k")
 theme_override_font_sizes/font_size = 20
 text = "DUMMY"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Label4" type="Label" parent="CanvasLayer" unique_id=690111692]
-offset_left = 1097.0908
-offset_top = 343.63635
-offset_right = 1297.0908
-offset_bottom = 371.63635
+[node name="Label4" type="Label" parent="CanvasLayer" unique_id=510143661]
+offset_left = 228.00002
+offset_top = 55.999996
+offset_right = 428.0
+offset_bottom = 84.0
 theme_override_colors/font_color = Color(0.038651858, 0.004736936, 0, 1)
 theme_override_fonts/font = ExtResource("4_2on7k")
 theme_override_font_sizes/font_size = 20
 text = "TRAINING:"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="HitLabel" type="Label" parent="CanvasLayer" unique_id=1667625262]
-offset_left = 1312.1818
-offset_top = 889.63635
-offset_right = 1408.1818
-offset_bottom = 917.63635
+[node name="HitLabel" type="Label" parent="CanvasLayer" unique_id=1211941781]
+offset_left = 280.00003
+offset_top = 188.0
+offset_right = 376.00003
+offset_bottom = 216.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_2on7k")
 theme_override_font_sizes/font_size = 20
 text = "0/20"
 horizontal_alignment = 1
-
-[node name="Yu" parent="." unique_id=930258384 instance=ExtResource("5_urisj")]
-position = Vector2(176, 468)
+metadata/_edit_use_anchors_ = true
 
 [node name="Dummy4" parent="." unique_id=1913866107 instance=ExtResource("6_x1mx0")]
 position = Vector2(960, 468)
+
+[node name="Yu2" parent="." unique_id=895912741 instance=ExtResource("6_ksxwy")]
+position = Vector2(176, 468)
+hit_effect_scene = ExtResource("7_txyem")

@@ -6,6 +6,10 @@ extends CharacterBody2D
 @onready var light_punch_area: Area2D = $"Light Punch"
 @onready var heavy_punch_area: Area2D = $"Heavy Punch"
 @onready var reaction_timer: Timer = $ReactionTimer
+@onready var sound_whoosh: AudioStreamPlayer2D = $SoundWhoosh
+@onready var sound_hit_light: AudioStreamPlayer2D = $SoundHitLight
+@onready var sound_hit_heavy: AudioStreamPlayer2D = $SoundHitHeavy
+@onready var sound_footstep: AudioStreamPlayer2D = $SoundFootstep
 @export var hit_effect_scene: PackedScene
 @export var player: CharacterBody2D
 
@@ -15,14 +19,13 @@ const LIGHT_PUNCH_DAMAGE = 4
 const HEAVY_PUNCH_DAMAGE = 8
 const LIGHT_PUNCH_COOLDOWN = 0.2
 const HEAVY_PUNCH_COOLDOWN = 0.7
-
 const DIST_CHASE: float = 350.0
 const DIST_FAR: float = 80.0
 const DIST_IDEAL: float = 60.0
 const DIST_CLOSE: float = 40.0
-
 const STAGGER_MIN: float = 0.2
 const STAGGER_MAX: float = 0.45
+const FOOTSTEP_INTERVAL: float = 0.5
 
 enum State { IDLE, FORWARD_WALK, BACKWARD_WALK, PUNCH }
 enum Phase { IDLE, RETREAT, AGGRESSIVE }
@@ -32,56 +35,46 @@ var current_phase: Phase = Phase.IDLE
 var health: int = HEALTH_MAX
 var is_dead: bool = false
 var player_is_dead: bool = false
-
 var doing_combo: bool = false
 var combo_count: int = 0
 var max_combo: int = 3
-
 var light_punch_timer: float = 0.0
 var heavy_punch_timer: float = 0.0
 var stagger_timer: float = 0.0
 var decision_timer: float = 0.0
-
 var current_attack: String = ""
 var hit_registered: bool = false
-
 var punish_window: float = 0.0
 var player_was_punching: bool = false
-
 var consecutive_hits: int = 0
 var consecutive_misses: int = 0
 var locked_dir: float = 1.0
 var is_stepping_back: bool = false
 var stepback_timer: float = 0.0
+var footstep_timer: float = 0.0
+var defeated = false
 
 func _ready() -> void:
 	add_to_group("enemy")
 	anim_player.animation_finished.connect(_on_animation_finished)
-
 	if reaction_timer:
 		reaction_timer.one_shot = true
-
 	if anim_player.has_animation("idle"):
 		anim_player.play("idle")
 	else:
 		animated_sprite.play("idle")
-
 	if player == null:
 		player = get_tree().get_first_node_in_group("player")
-
 	if not player:
 		push_error("Santorino: No player found in group 'player'!")
 	else:
 		print("Santorino: found player → ", player.name)
 
 func _physics_process(delta: float) -> void:
-	# Freeze if dead
 	if is_dead:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
-
-	# Freeze if player is dead
 	if _is_player_dead():
 		velocity = Vector2.ZERO
 		current_state = State.IDLE
@@ -89,7 +82,6 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("idle")
 		move_and_slide()
 		return
-
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -97,16 +89,15 @@ func _physics_process(delta: float) -> void:
 	heavy_punch_timer = max(heavy_punch_timer - delta, 0.0)
 	decision_timer = max(decision_timer - delta, 0.0)
 	stepback_timer = max(stepback_timer - delta, 0.0)
+	footstep_timer = max(footstep_timer - delta, 0.0)
 
 	if punish_window > 0.0:
 		punish_window -= delta
-
 	if stagger_timer > 0.0:
 		stagger_timer -= delta
 		velocity.x = move_toward(velocity.x, 0, SPEED * delta * 4.0)
 		move_and_slide()
 		return
-
 	if player == null:
 		move_and_slide()
 		return
@@ -116,7 +107,6 @@ func _physics_process(delta: float) -> void:
 
 	if dist > DIST_CLOSE:
 		locked_dir = dir
-
 	if current_state != State.PUNCH:
 		animated_sprite.flip_h = locked_dir < 0
 
@@ -130,29 +120,22 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		update_animations()
 		return
-
-	# Step-back in progress — keep moving back
 	if stepback_timer > 0.0:
 		velocity.x = -locked_dir * SPEED * 1.5
 		current_state = State.BACKWARD_WALK
 		move_and_slide()
 		update_animations()
 		return
-
-	# Check collision with player — always step back
 	for i in get_slide_collision_count():
 		var col = get_slide_collision(i)
 		if col.get_collider() != player:
 			continue
-		print("DEBUG: Touching player! Starting stepback")
 		stepback_timer = 0.35
 		velocity.x = -locked_dir * SPEED * 1.5
 		current_state = State.BACKWARD_WALK
 		move_and_slide()
 		update_animations()
 		return
-
-	# Distance fallback step-back
 	if dist < DIST_CLOSE:
 		stepback_timer = 0.35
 		velocity.x = -locked_dir * SPEED * 1.5
@@ -160,7 +143,6 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		update_animations()
 		return
-
 	if reaction_timer and not reaction_timer.is_stopped():
 		velocity.x = move_toward(velocity.x, 0, SPEED * delta * 3.0)
 		current_state = State.IDLE
@@ -241,18 +223,15 @@ func _enter_punch(attack_name: String = "punch_light") -> void:
 	if not anim_player.has_animation(attack_name):
 		print("DEBUG ERROR: AnimationPlayer missing: ", attack_name)
 		return
-
-	print("DEBUG: Enemy starting: ", attack_name)
 	current_state = State.PUNCH
 	current_attack = attack_name
 	hit_registered = false
 	velocity.x = 0
-
+	sound_whoosh.play()
 	if attack_name == "punch_light":
 		light_punch_timer = LIGHT_PUNCH_COOLDOWN
 	elif attack_name == "punch_heavy":
 		heavy_punch_timer = HEAVY_PUNCH_COOLDOWN
-
 	anim_player.play(attack_name)
 
 func _start_combo() -> void:
@@ -266,14 +245,9 @@ func _start_combo() -> void:
 func _is_player_punching() -> bool:
 	if player == null:
 		return false
-	if not "current_state" in player:
+	if not "is_attacking" in player:
 		return false
-	if "State" in player:
-		var ps = player.State
-		if "PUNCH_HEAVY" in ps:
-			return player.current_state == ps.PUNCH_LIGHT or player.current_state == ps.PUNCH_HEAVY
-		return player.current_state == ps.PUNCH_LIGHT
-	return false
+	return player.is_attacking
 
 func update_animations() -> void:
 	if current_state == State.PUNCH:
@@ -285,9 +259,15 @@ func update_animations() -> void:
 		State.FORWARD_WALK:
 			if animated_sprite.animation != "forward":
 				animated_sprite.play("forward")
+			if footstep_timer <= 0.0:
+				footstep_timer = FOOTSTEP_INTERVAL
+				sound_footstep.play()
 		State.BACKWARD_WALK:
 			if animated_sprite.animation != "backward":
 				animated_sprite.play("backward")
+			if footstep_timer <= 0.0:
+				footstep_timer = FOOTSTEP_INTERVAL
+				sound_footstep.play()
 
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name in ["punch_light", "punch_heavy"]:
@@ -297,39 +277,37 @@ func _on_animation_finished(anim_name: String) -> void:
 		else:
 			consecutive_misses += 1
 			consecutive_hits = 0
-
 		if doing_combo and combo_count < max_combo - 1:
 			combo_count += 1
 			await get_tree().create_timer(0.07).timeout
 			_enter_punch("punch_light")
 		else:
-			doing_combo    = false
-			combo_count    = 0
+			doing_combo = false
+			combo_count = 0
 			hit_registered = false
-			current_state  = State.IDLE
+			current_state = State.IDLE
 			current_attack = ""
-			current_phase  = Phase.IDLE
+			current_phase = Phase.IDLE
 			reaction_timer.start(randf_range(0.18, 0.38))
 
-# --- HIT SCAN ---
 func scan_light_hit() -> void:
-	print("DEBUG: scan_light_hit called")
 	if not hit_registered:
 		_scan_hit(light_punch_area, LIGHT_PUNCH_DAMAGE)
 
 func scan_heavy_hit() -> void:
-	print("DEBUG: scan_heavy_hit called")
 	if not hit_registered:
 		_scan_hit(heavy_punch_area, HEAVY_PUNCH_DAMAGE)
 
 func _scan_hit(area: Area2D, damage: int) -> void:
 	var bodies = area.get_overlapping_bodies()
-	print("DEBUG: Bodies in punch area: ", bodies.size())
 	for body in bodies:
 		if body.is_in_group("player"):
-			print("DEBUG: HIT CONFIRMED on player!")
 			hit_registered = true
 			spawn_hit_effect(body.global_position)
+			if damage == LIGHT_PUNCH_DAMAGE:
+				sound_hit_light.play()
+			else:
+				sound_hit_heavy.play()
 			if body.has_method("take_damage"):
 				body.take_damage(damage)
 			return
@@ -337,24 +315,23 @@ func _scan_hit(area: Area2D, damage: int) -> void:
 func _on_light_punch_body_entered(body) -> void:
 	if current_state == State.PUNCH and current_attack == "punch_light" and not hit_registered:
 		if body.is_in_group("player"):
-			print("DEBUG: light punch fallback hit!")
 			hit_registered = true
 			spawn_hit_effect(body.global_position)
+			sound_hit_light.play()
 			if body.has_method("take_damage"):
 				body.take_damage(LIGHT_PUNCH_DAMAGE)
 
 func _on_heavy_punch_body_entered(body) -> void:
 	if current_state == State.PUNCH and current_attack == "punch_heavy" and not hit_registered:
 		if body.is_in_group("player"):
-			print("DEBUG: heavy punch fallback hit!")
 			hit_registered = true
 			spawn_hit_effect(body.global_position)
+			sound_hit_heavy.play()
 			if body.has_method("take_damage"):
 				body.take_damage(HEAVY_PUNCH_DAMAGE)
 
 func spawn_hit_effect(hit_pos: Vector2) -> void:
 	if hit_effect_scene == null:
-		print("DEBUG ERROR: No hit_effect_scene assigned!")
 		return
 	var effect = hit_effect_scene.instantiate()
 	get_tree().current_scene.add_child(effect)
@@ -369,31 +346,25 @@ func spawn_hit_effect(hit_pos: Vector2) -> void:
 		if anim_list.size() > 0:
 			effect.play(anim_list[0])
 
-# --- DAMAGE & DEATH ---
 func take_damage(amount: int) -> void:
 	if is_dead:
 		return
 	health -= amount
 	health = clamp(health, 0, HEALTH_MAX)
 	print("Santorino: took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
-
-	current_state  = State.IDLE
-	current_phase  = Phase.RETREAT
+	current_state = State.IDLE
+	current_phase = Phase.RETREAT
 	current_attack = ""
 	hit_registered = false
-	doing_combo    = false
-	combo_count    = 0
-	velocity.x     = 0
-
+	doing_combo = false
+	combo_count = 0
+	velocity.x = 0
 	decision_timer = 0.0
 	if reaction_timer:
 		reaction_timer.stop()
-
 	stagger_timer = randf_range(STAGGER_MIN, STAGGER_MAX)
-
 	anim_player.stop()
 	animated_sprite.play("idle")
-
 	if health <= 0:
 		die()
 
@@ -408,5 +379,6 @@ func die() -> void:
 		shape.set_deferred("disabled", true)
 	anim_player.stop()
 	animated_sprite.play("dead")
-	print("DEBUG: Enemy defeated!")
+	print("DEBUG: Santorino defeated!")
+	GameProgress.unlock_next_level(1)
 	KOScreen.trigger(true, "res://Scene/Levels/quest_2.tscn")

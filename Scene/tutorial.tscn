@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://crj4usfpktdm6"]
 
 [ext_resource type="Script" uid="uid://bej3c6mghsjxn" path="res://Script/tutorial.gd" id="1_7n6eb"]
+[ext_resource type="AudioStream" uid="uid://hsiutga0cqxa" path="res://assets/Sound/chill.mp3" id="2_1n71j"]
+[ext_resource type="Texture2D" uid="uid://b0gjn462qaev8" path="res://others/Dialogue.png" id="2_aqehm"]
 [ext_resource type="Texture2D" uid="uid://dihuvqte04gcy" path="res://BG/Gym_Background.png" id="3_aqehm"]
 [ext_resource type="Texture2D" uid="uid://cbfq3sc5d5gg1" path="res://buttons/Back.png" id="3_qwkqa"]
+[ext_resource type="FontFile" uid="uid://vumxiophq1ih" path="res://others/minecraft-five.otf" id="3_r3him"]
 [ext_resource type="Texture2D" uid="uid://4qsjvt8gw55n" path="res://buttons/Back_Hover.png" id="4_aqehm"]
-[ext_resource type="PackedScene" uid="uid://nyt0y2jy4117" path="res://Scene/Yu/yu.tscn" id="6_4cpsy"]
 [ext_resource type="PackedScene" uid="uid://dbumi8yql8m2i" path="res://Scene/dummy/dummy.tscn" id="7_qwkqa"]
+[ext_resource type="AudioStream" uid="uid://c0vwu74bh7hl1" path="res://assets/Sound/button_hover.mp3" id="7_veuv8"]
+[ext_resource type="AudioStream" uid="uid://djmd0rruetqi5" path="res://assets/Sound/button_pressed.mp3" id="8_1n71j"]
+[ext_resource type="PackedScene" uid="uid://dkvtslmnibjvo" path="res://Scene/Yu/yu_2.tscn" id="8_r3him"]
+[ext_resource type="PackedScene" uid="uid://c8tegbstbdo5c" path="res://Scene/Effect/effect.tscn" id="9_64kyw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cpsy"]
 size = Vector2(1286.5, 80)
@@ -19,9 +25,60 @@ size = Vector2(1885.5093, 1372.498)
 [node name="Tutorial" type="Node2D" unique_id=764362344]
 script = ExtResource("1_7n6eb")
 
-[node name="BG_Music" type="AudioStreamPlayer2D" parent="." unique_id=1793867648]
-volume_db = -33.265
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1328630268]
+stream = ExtResource("2_1n71j")
+volume_db = -24.976
 autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=397818176]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=328637479]
+position = Vector2(1048.9999, 135.99995)
+scale = Vector2(-7.336, 7.336)
+texture = ExtResource("2_aqehm")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=684858260]
+offset_left = 946.0
+offset_top = 57.0
+offset_right = 1146.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r3him")
+theme_override_font_sizes/font_size = 20
+text = "MOVEMENT:"
+
+[node name="Label2" type="Label" parent="CanvasLayer" unique_id=900457705]
+offset_left = 946.0
+offset_top = 101.0
+offset_right = 1146.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r3him")
+theme_override_font_sizes/font_size = 20
+text = "A / D"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer" unique_id=358366011]
+offset_left = 946.0
+offset_top = 145.0
+offset_right = 1146.0
+offset_bottom = 173.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r3him")
+theme_override_font_sizes/font_size = 20
+text = "PUNCH:"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer" unique_id=1390636200]
+offset_left = 946.0
+offset_top = 189.0
+offset_right = 1146.0
+offset_bottom = 217.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r3him")
+theme_override_font_sizes/font_size = 20
+text = "J / K"
+horizontal_alignment = 1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1740983104]
 
@@ -46,6 +103,14 @@ texture_normal = ExtResource("3_qwkqa")
 texture_hover = ExtResource("4_aqehm")
 stretch_mode = 0
 
+[node name="SoundHover" type="AudioStreamPlayer" parent="Control" unique_id=479324791]
+stream = ExtResource("7_veuv8")
+volume_db = 6.381
+
+[node name="SoundPress" type="AudioStreamPlayer" parent="Control" unique_id=937180752]
+stream = ExtResource("8_1n71j")
+volume_db = -8.549
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1237247230]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=846205929]
@@ -62,10 +127,11 @@ position = Vector2(-64, 503.5)
 scale = Vector2(0.06523437, 0.30382562)
 shape = SubResource("RectangleShape2D_aqehm")
 
-[node name="Yu" parent="." unique_id=930258384 instance=ExtResource("6_4cpsy")]
-position = Vector2(143, 468)
-
 [node name="Dummy" parent="." unique_id=2041271841 instance=ExtResource("7_qwkqa")]
 position = Vector2(976, 468)
+
+[node name="Yu2" parent="." unique_id=895912741 instance=ExtResource("8_r3him")]
+position = Vector2(176, 468)
+hit_effect_scene = ExtResource("9_64kyw")
 
 [connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]

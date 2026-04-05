@@ -5,8 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://c8tegbstbdo5c" path="res://Scene/Effect/effect.tscn" id="2_0p401"]
 [ext_resource type="Texture2D" uid="uid://blcgmr572md27" path="res://assets/YU/yu_stance_forward_walk-Sheet2.png" id="2_lkid2"]
 [ext_resource type="Texture2D" uid="uid://cpvvn7wk0nygl" path="res://assets/YU/heavy_punch.png" id="3_0p401"]
+[ext_resource type="AudioStream" uid="uid://c8yu70cpurlwa" path="res://assets/Sound/Whoosh.mp3" id="3_x7h4k"]
+[ext_resource type="AudioStream" uid="uid://cqo1js3ui27ab" path="res://assets/Sound/LightPunch.wav" id="4_kbd4x"]
 [ext_resource type="Texture2D" uid="uid://berc3bbh05oj" path="res://assets/YU/yu_dead-Sheet.png" id="4_p8wk5"]
 [ext_resource type="Texture2D" uid="uid://dp8rawq8mf5sh" path="res://assets/YU/yu_stance_idle-Sheet.png" id="4_qsqhv"]
+[ext_resource type="AudioStream" uid="uid://ce5656tq2wbsr" path="res://assets/Sound/HeavyPunch.wav" id="5_5gy4w"]
 [ext_resource type="Texture2D" uid="uid://c1uemi5kad8vr" path="res://assets/YU/yu_boxing_punch2-Sheet.png" id="5_p8wk5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jl7as"]
@@ -502,12 +505,22 @@ z_index = 2
 script = ExtResource("1_lkid2")
 hit_effect_scene = ExtResource("2_0p401")
 
+[node name="SoundWhoosh" type="AudioStreamPlayer2D" parent="." unique_id=1453862260]
+stream = ExtResource("3_x7h4k")
+
+[node name="SoundHitLight" type="AudioStreamPlayer2D" parent="." unique_id=1176787580]
+stream = ExtResource("4_kbd4x")
+
+[node name="SoundHitHeavy" type="AudioStreamPlayer2D" parent="." unique_id=1262063771]
+stream = ExtResource("5_5gy4w")
+
+[node name="SoundFootstep" type="AudioStreamPlayer2D" parent="." unique_id=1052839569]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=33735596]
 scale = Vector2(7.125, 7.125)
 sprite_frames = SubResource("SpriteFrames_rpyty")
 animation = &"light_punch"
 autoplay = "idle"
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1117037598]
 position = Vector2(8, 34)
