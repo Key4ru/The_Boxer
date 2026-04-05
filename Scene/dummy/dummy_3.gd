@@ -10,7 +10,7 @@ var hit_timer: float = 0.0
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var hit_count: int = 0
-var hit_goal: int = 3
+var hit_goal: int = 30
 var quest_complete: bool = false
 
 func _ready():
