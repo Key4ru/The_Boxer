@@ -105,16 +105,19 @@ theme_override_font_sizes/font_size = 20
 text = "TRAINING:"
 horizontal_alignment = 1
 
-[node name="HitLabel" type="Label" parent="CanvasLayer" unique_id=442728219]
-offset_left = 280.0
+[node name="HitLabel" type="Label" parent="CanvasLayer" unique_id=397560509]
+anchors_preset = -1
+anchor_left = -0.031250022
+offset_left = 299.00006
 offset_top = 188.0
-offset_right = 376.0
+offset_right = 395.00006
 offset_bottom = 216.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_cb7kp")
 theme_override_font_sizes/font_size = 20
 text = "0/20"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Dummy2" parent="." unique_id=1501105444 instance=ExtResource("3_icpb2")]
 position = Vector2(960, 468)
