@@ -22,7 +22,7 @@ size = Vector2(1885.5093, 1372.498)
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1161263875]
 stream = ExtResource("1_8yyfh")
-volume_db = -24.976
+volume_db = -14.0
 autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=766364706]

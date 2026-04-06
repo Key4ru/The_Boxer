@@ -27,7 +27,7 @@ script = ExtResource("1_7n6eb")
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1328630268]
 stream = ExtResource("2_1n71j")
-volume_db = -24.976
+volume_db = -15.768
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=397818176]

@@ -518,7 +518,6 @@ scale = Vector2(7.125, 7.125)
 sprite_frames = SubResource("SpriteFrames_yvrov")
 animation = &"light_punch"
 autoplay = "idle"
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1256988990]
 position = Vector2(8, 34)

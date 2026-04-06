@@ -520,7 +520,6 @@ stream = ExtResource("5_5gy4w")
 scale = Vector2(7.125, 7.125)
 sprite_frames = SubResource("SpriteFrames_rpyty")
 animation = &"light_punch"
-autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1117037598]
 position = Vector2(8, 34)

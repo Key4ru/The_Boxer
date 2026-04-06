@@ -26,7 +26,6 @@ var footstep_timer: float = 0.0
 func _ready():
 	add_to_group("player")
 	anim_player.animation_finished.connect(_on_animation_finished)
-	anim_player.play("idle")
 
 func _physics_process(delta):
 	if is_dead:
@@ -129,7 +128,6 @@ func die():
 	velocity = Vector2.ZERO
 	for shape in find_children("*", "CollisionShape2D"):
 		shape.set_deferred("disabled", true)
-	anim_player.stop()
 	animated_sprite.play("dead")
 	print("Yu: defeated!")
 	KOScreen.trigger(true, "res://Scene/Levels/level_select.tscn")

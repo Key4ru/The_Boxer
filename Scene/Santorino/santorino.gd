@@ -363,7 +363,6 @@ func take_damage(amount: int) -> void:
 	if reaction_timer:
 		reaction_timer.stop()
 	stagger_timer = randf_range(STAGGER_MIN, STAGGER_MAX)
-	anim_player.stop()
 	animated_sprite.play("idle")
 	if health <= 0:
 		die()
@@ -377,7 +376,6 @@ func die() -> void:
 	doing_combo = false
 	for shape in find_children("*", "CollisionShape2D"):
 		shape.set_deferred("disabled", true)
-	anim_player.stop()
 	animated_sprite.play("dead")
 	print("DEBUG: Santorino defeated!")
 	GameProgress.unlock_next_level(1)
