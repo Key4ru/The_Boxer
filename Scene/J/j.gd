@@ -186,7 +186,7 @@ func _is_player_dead() -> bool:
 		return player.is_dead
 	return false
 
-func _mid_range_decision(dir: float, delta: float) -> void:
+func _mid_range_decision(dir: float, _delta: float) -> void:
 	decision_timer = randf_range(0.25, 0.5)
 	var r: float = randf()
 	if r < 0.60:
@@ -221,7 +221,6 @@ func _pick_punch() -> String:
 
 func _enter_punch(attack_name: String = "punch_light") -> void:
 	if not anim_player.has_animation(attack_name):
-		print("DEBUG ERROR: AnimationPlayer missing: ", attack_name)
 		return
 	current_state = State.PUNCH
 	current_attack = attack_name
@@ -351,7 +350,7 @@ func take_damage(amount: int) -> void:
 		return
 	health -= amount
 	health = clamp(health, 0, HEALTH_MAX)
-	print("J: took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
+	print("J took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
 	current_state = State.IDLE
 	current_phase = Phase.RETREAT
 	current_attack = ""
@@ -377,6 +376,6 @@ func die() -> void:
 	for shape in find_children("*", "CollisionShape2D"):
 		shape.set_deferred("disabled", true)
 	animated_sprite.play("dead")
-	print("DEBUG: J defeated!")
+	print("J defeated!")
 	GameProgress.unlock_next_level(3)
 	KOScreen.trigger(true, "res://Scene/Levels/ending.tscn") 

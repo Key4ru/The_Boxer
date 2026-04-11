@@ -8,18 +8,13 @@ var j = null
 var max_health = 50
 
 func _ready():
-	print("UI READY")
-
 	yu = get_tree().get_first_node_in_group("player")
 	j = get_tree().get_first_node_in_group("enemy")
-
-	print("YU:", yu)
-	print("J:", j)
 
 	yu_bar.stop()
 	j_bar.stop()
 
-func _process(delta):
+func _process(_delta):
 	if yu != null:
 		update_bar(yu_bar, yu.health)
 

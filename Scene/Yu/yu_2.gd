@@ -45,7 +45,7 @@ func _physics_process(delta):
 		handle_attack_input()
 	move_and_slide()
 
-func handle_movement(delta):
+func handle_movement(_delta):
 	var direction = Input.get_axis("backward", "forward")
 	if direction != 0:
 		var anim_to_play = "forward" if direction > 0 else "backward"
@@ -117,7 +117,7 @@ func take_damage(amount: int):
 		return
 	health -= amount
 	health = clamp(health, 0, HEALTH_MAX)
-	print("Yu: took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
+	print("Yu took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
 	if health <= 0:
 		die()
 
@@ -130,5 +130,5 @@ func die():
 	for shape in find_children("*", "CollisionShape2D"):
 		shape.set_deferred("disabled", true)
 	animated_sprite.play("dead")
-	print("Yu: defeated!")
+	print("Yu defeated!")
 	KOScreen.trigger(true, "res://Scene/Levels/level_select.tscn")

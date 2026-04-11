@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvx860a8ej2fa"]
 
-[ext_resource type="Script" path="res://Scene/Levels/quest_1.gd" id="1_i4jm3"]
+[ext_resource type="Script" uid="uid://c7y65an60rgux" path="res://Scene/Levels/quest_1.gd" id="1_i4jm3"]
 [ext_resource type="Texture2D" uid="uid://dihuvqte04gcy" path="res://BG/Gym_Background.png" id="1_icpb2"]
 [ext_resource type="AudioStream" uid="uid://hsiutga0cqxa" path="res://assets/Sound/chill.mp3" id="2_4xohk"]
 [ext_resource type="Texture2D" uid="uid://cotu1kte2m0do" path="res://others/Quest.png" id="2_ypg85"]

@@ -65,10 +65,6 @@ func _ready() -> void:
 		animated_sprite.play("idle")
 	if player == null:
 		player = get_tree().get_first_node_in_group("player")
-	if not player:
-		push_error("Takeda: No player found in group 'player'!")
-	else:
-		print("Takeda: found player → ", player.name)
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -186,7 +182,7 @@ func _is_player_dead() -> bool:
 		return player.is_dead
 	return false
 
-func _mid_range_decision(dir: float, delta: float) -> void:
+func _mid_range_decision(dir: float, _delta: float) -> void:
 	decision_timer = randf_range(0.25, 0.5)
 	var r: float = randf()
 	if r < 0.60:
@@ -351,7 +347,7 @@ func take_damage(amount: int) -> void:
 		return
 	health -= amount
 	health = clamp(health, 0, HEALTH_MAX)
-	print("Takeda: took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
+	print("Takeda took %d damage → %d/%d HP" % [amount, health, HEALTH_MAX])
 	current_state = State.IDLE
 	current_phase = Phase.RETREAT
 	current_attack = ""
@@ -377,6 +373,6 @@ func die() -> void:
 	for shape in find_children("*", "CollisionShape2D"):
 		shape.set_deferred("disabled", true)
 	animated_sprite.play("dead")
-	print("DEBUG: Takeda defeated!")
+	print("Takeda defeated!")
 	GameProgress.unlock_next_level(0)
 	KOScreen.trigger(true, "res://Scene/Levels/quest_1.tscn")

@@ -56,4 +56,3 @@ func trigger_hit():
 	is_hit = true
 	hit_timer = hit_cooldown
 	animated_sprite.play("hit")
-	print("Dummy was hit!")

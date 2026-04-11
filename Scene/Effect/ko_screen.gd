@@ -8,7 +8,7 @@ var next_scene: String = ""
 func _ready():
 	hide()
 
-func trigger(won: bool, scene_path: String):
+func trigger(_won: bool, scene_path: String):
 	next_scene = scene_path
 	show()
 
